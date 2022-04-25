@@ -9,6 +9,6 @@ task('deploy:assets_build', function () {
 after('deploy:prepare', 'deploy:assets_build');
 
 task('deploy:assets', function () {
-	upload(dirname(__FILE__) . '/html/assets', '{{release_path}}/html');
+	upload($this->path('html/assets'), '{{release_path}}/html');
 });
 after('deploy:vendors', 'deploy:assets');
