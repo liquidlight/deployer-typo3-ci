@@ -23,12 +23,7 @@ class Loader
 		new \SourceBroker\DeployerExtendedTypo3\Loader();
 
 		require_once $this->path('vendor/liquidlight/bandstand/deployer/config.php');
-
 		require_once $this->path('vendor/liquidlight/bandstand/deployer/tasks/assets.php');
-
-		foreach($this->envs as $host) {
-			require $this->path('vendor/liquidlight/bandstand/deployer/hosts/_skel.php');
-		}
 
 	}
 
