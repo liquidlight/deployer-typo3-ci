@@ -23,7 +23,6 @@ class Loader
 
 		foreach([
 			'config.php',
-			'tasks/assets_build.php',
 			'tasks/assets_deploy.php',
 		] as $path) {
 			require_once $this->path('vendor/liquidlight/bandstand/deployer/' . $path);
