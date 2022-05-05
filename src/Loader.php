@@ -11,8 +11,6 @@ class Loader
 
 	protected $composer;
 
-	protected $envs = [];
-
 	public function __construct($path)
 	{
 		$this->path = $path;
@@ -23,6 +21,7 @@ class Loader
 
 		foreach([
 			'config.php',
+			'hosts/local.php'
 			'tasks/assets_deploy.php',
 		] as $path) {
 			require_once $this->path('vendor/liquidlight/bandstand/deployer/' . $path);
