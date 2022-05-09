@@ -7,5 +7,4 @@ namespace Deployer;
  */
 host('staging')
 	->set('branch', 'env/staging')
-	->addSshOption('StrictHostKeyChecking', 'no');
 ;
