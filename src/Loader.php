@@ -2,9 +2,6 @@
 
 namespace LiquidLight\Bandstand;
 
-use Symfony\Component\Yaml\Yaml;
-use SourceBroker\DeployerLoader\Load;
-
 class Loader
 {
 	protected $path;
@@ -25,6 +22,7 @@ class Loader
 			'hosts/staging.php',
 			'hosts/production.php',
 			'tasks/assets_deploy.php',
+			'tasks/cache_clear_php_http.php',
 		] as $path) {
 			require_once $this->path('vendor/liquidlight/bandstand/deployer/' . $path);
 		}
