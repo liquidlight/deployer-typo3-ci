@@ -18,6 +18,7 @@ class Loader
 
 		foreach([
 			'config.php',
+			'hosts/hosts.yaml.php',
 			'hosts/local.php',
 			'hosts/staging.php',
 			'hosts/production.php',
