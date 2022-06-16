@@ -16,7 +16,7 @@ class Loader
 
 		new \SourceBroker\DeployerExtendedTypo3\Loader();
 
-		foreach([
+		foreach ([
 			'config.php',
 			'hosts/hosts.yaml.php',
 			'hosts/local.php',
@@ -38,7 +38,7 @@ class Loader
 	protected function loadComposer()
 	{
 		$composer = $this->path('composer.json');
-		if(file_exists($composer)) {
+		if (file_exists($composer)) {
 			$this->composer = json_decode(file_get_contents($composer), true);
 		}
 	}

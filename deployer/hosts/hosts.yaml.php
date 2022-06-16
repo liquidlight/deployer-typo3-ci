@@ -6,7 +6,7 @@ namespace Deployer;
 $file = getcwd() . '/host.ci.yaml';
 
 // If the deploy target is set, put it in the file
-if(getenv('DEPLOY_TARGET')) {
+if (getenv('DEPLOY_TARGET')) {
 	file_put_contents($file, getenv('DEPLOY_TARGET'));
 }
 

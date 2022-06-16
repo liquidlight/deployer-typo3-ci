@@ -9,4 +9,3 @@ host('local')
 	->hostname('local')
 	->set('deploy_path', getcwd())
 ;
-
