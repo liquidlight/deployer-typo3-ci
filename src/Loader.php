@@ -24,10 +24,10 @@ class Loader
 			'hosts/production.php',
 			'tasks/assets_deploy.php',
 			'tasks/cache_clear_php_http.php',
+			'tasks/deploy.php',
 		] as $path) {
 			require_once $this->path('vendor/liquidlight/bandstand/deployer/' . $path);
 		}
-
 	}
 
 	protected function path($path)
