@@ -33,13 +33,6 @@ if (isset(
 }
 
 /**
- * default_stage
- *
- * If you just run "deploy" what happens?
- */
-set('default_stage', 'local');
-
-/**
  * composer_channel
  *
  * What composer version?
