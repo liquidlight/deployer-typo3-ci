@@ -33,3 +33,23 @@ set(
 		get('web_path') . 'fileadmin',
 	]
 );
+
+/**
+ * clear_paths
+ *
+ * What folders get removed from live?
+ */
+set(
+	'clear_paths', 
+	array_merge(
+		get('clear_paths'), 
+		[
+			'.gitlab',
+			'.gitlab.ci.yml'
+			'build/',
+			'gulpfile.js',
+			'package.json',
+			'package-lock.json',
+		]
+	)
+);
