@@ -52,7 +52,7 @@ set(
 		get('clear_paths'),
 		[
 			'.gitlab',
-			'.gitlab.ci.yml',
+			'.gitlab-ci.yml',
 			'build/',
 			'gulpfile.js',
 			'package.json',
