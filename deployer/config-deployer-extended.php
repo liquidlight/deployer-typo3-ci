@@ -2,7 +2,6 @@
 
 namespace Deployer;
 
-
 /**
  * web_path
  *
