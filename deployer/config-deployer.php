@@ -47,12 +47,12 @@ set(
  * What folders get removed from live?
  */
 set(
-	'clear_paths', 
+	'clear_paths',
 	array_merge(
-		get('clear_paths'), 
+		get('clear_paths'),
 		[
 			'.gitlab',
-			'.gitlab.ci.yml'
+			'.gitlab.ci.yml',
 			'build/',
 			'gulpfile.js',
 			'package.json',
