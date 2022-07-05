@@ -12,6 +12,13 @@ if (getenv('CI_REPOSITORY_URL')) {
 }
 
 /**
+ * keep_releases
+ *
+ * How many releases to keep
+ */
+set('keep_releases', 3);
+
+/**
  * shared_files
  *
  * Add .env as a shared file
