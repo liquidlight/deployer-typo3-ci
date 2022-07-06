@@ -23,7 +23,7 @@ set('keep_releases', 3);
  *
  * Set default composer path
  */
-set('bin/composer', '/usr/local/bin/composer')
+set('bin/composer', '/usr/local/bin/composer');
 
 /**
  * shared_files
