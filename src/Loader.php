@@ -29,7 +29,6 @@ class Loader
 			'tasks/cache_clear_php_http.php',
 			'tasks/deploy.php',
 			'tasks/typo3cms_cache_flush.php',
-			'tasks/typo3cms_cache_warmup.php',
 		] as $path) {
 			require_once $this->path('vendor/liquidlight/bandstand/deployer/' . $path);
 		}
