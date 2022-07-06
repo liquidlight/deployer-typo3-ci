@@ -17,10 +17,10 @@ class Loader
 		new \SourceBroker\DeployerExtendedTypo3\Loader();
 
 		foreach ([
-			'config-deployer.php',
 			'config-deployer-extended.php',
 			'config-deployer-extended-database.php',
 			'config-deployer-extended-typo3.php',
+			'config-deployer.php',
 			'hosts/hosts.yaml.php',
 			'hosts/local.php',
 			'hosts/staging.php',
