@@ -19,6 +19,13 @@ if (getenv('CI_REPOSITORY_URL')) {
 set('keep_releases', 3);
 
 /**
+ * bin/composer
+ *
+ * Set default composer path
+ */
+set('bin/composer', '/usr/local/bin/composer')
+
+/**
  * shared_files
  *
  * Add .env as a shared file
