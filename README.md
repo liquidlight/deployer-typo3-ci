@@ -51,9 +51,9 @@ You need for this process:
       - `INSTANCE="production"` (it should match your `host.ci.yaml` name) 
       - `TYPO3_DB_HOST="localhost"` (or wherever the database is hosted)
 10. On Gitlab - Add a CI/CD variable with the title/key of `DEPLOY_HOST_PRODUCTION` and the value being set to the contents of `host.ci.yaml` (which you populated in step 6)
- - Go to the repository
- - Click **Settings -> CI/CD** on the left
- - Expand **Variables** and click **Add Variable**
+   - Go to the repository
+   - Click **Settings -> CI/CD** on the left
+   - Expand **Variables** and click **Add Variable**
 10. On the live server 
     - add the Deployment server SSH **public key** to the `authorized_keys` file - this can be found in Lastpass under "Gitlab CI Deployer"
     - Allow incoming SSH connections from `deployment.service.liquidlight.uk` 
