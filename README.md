@@ -64,6 +64,7 @@ You need for this process:
    - You may need to set the `bin/php` or `bin/composer` paths (e.g. NLW)
    - The `http_user` may need to be set (e.g. CST)
    - The `writable_mode` might need to be changed
+   - You may need to set `set('writable_use_sudo', false);` if there is no sudo
 13. If there are any folders or files on the live server you want to keep (e.g. `blog` folder), these need to be moved into the `shared` folder and added to the `shared_files` array (see CST as an example)
 14. Update the file in `/etc/cron.d/[domain_name]` to point to the correct place
 
