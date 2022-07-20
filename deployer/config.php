@@ -80,6 +80,14 @@ set('keep_releases', 3);
 
 
 /**
+ * writable_use_sudo
+ * @package deployer
+ *
+ * Using sudo in writable commands?
+ */
+set('writable_use_sudo', true);
+
+/**
  * writable_dirs
  * @package deployer
  *
