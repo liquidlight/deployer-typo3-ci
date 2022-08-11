@@ -1,6 +1,6 @@
 <?php
 
-namespace LiquidLight\Bandstand;
+namespace LiquidLight\Deployer;
 
 class Loader
 {
@@ -27,7 +27,7 @@ class Loader
 			'tasks/deploy.php',
 			'tasks/typo3cms_cache_flush.php',
 		] as $path) {
-			require_once $this->path('vendor/liquidlight/bandstand/deployer/' . $path);
+			require_once $this->path('vendor/liquidlight/deployer/deployer/' . $path);
 		}
 	}
 

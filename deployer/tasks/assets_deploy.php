@@ -14,7 +14,7 @@ task('deploy:assets', function () {
 	 * Rsync local resources to handle compilation
 	 */
 	$paths = glob('app/*/Resources/Public') ?? [];
-	$paths = array_merge($paths, get('bandstand_asset_paths', []));
+	$paths = array_merge($paths, get('ll_deployer_asset_paths', []));
 
 	if (count($paths)) {
 		foreach ($paths as $path) {

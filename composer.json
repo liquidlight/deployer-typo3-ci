@@ -1,11 +1,11 @@
 {
-    "name": "liquidlight/bandstand",
+    "name": "liquidlight/deployer",
     "require": {
         "sourcebroker/deployer-extended-typo3": "^18.0"
     },
 	"autoload": {
         "psr-4": {
-            "LiquidLight\\Bandstand\\": "src"
+            "LiquidLight\\Deployer\\": "src"
         }
     },
 	"minimum-stability": "stable",

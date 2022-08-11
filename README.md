@@ -1,4 +1,4 @@
-# Bandstand
+# Liquid Light Deployer
 
 PHP Deployer package for deploying Liquid Light TYPO3 websites. It uses Gitlab CI
 
@@ -22,7 +22,7 @@ production:
 Will upload `html/assets` if there as well as `app/*/Resources/Public`, but if you want others that are built then you need to specify them as an array
 
 ```php
-set('bandstand_asset_paths', ['app/nlw/Resources/Public']);
+set('ll_deployer_asset_paths', ['app/nlw/Resources/Public']);
 ```
 
 ## Setup
@@ -37,7 +37,7 @@ You need for this process:
 2. Create a `deploy.php` in the root of the project - **see below** for example contents
    - Set the deploy path to `/var/www/[domain]` (you may need to deploy to a parallel folder as an interim)
    - Make sure the default SSH user has read & write access (`775`)
-3. `composer req liquidlight/bandstand`
+3. `composer req liquidlight/deployer`
 4. Add the **npm scripts block** (below) to your `package.json`
 5. Add deployment stage to `.gitlab-ci.yml`
    - You may need to split the CI file into the more verbose version found on projects such as CST and LWG
@@ -79,7 +79,7 @@ You need for this process:
 namespace Deployer;
 
 require_once __DIR__ . '/vendor/sourcebroker/deployer-loader/autoload.php';
-new \LiquidLight\Bandstand\Loader(__DIR__);
+new \LiquidLight\Deployer\Loader(__DIR__);
 
 host('production')
 	->set('deploy_path', '')
