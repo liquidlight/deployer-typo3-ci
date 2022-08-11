@@ -88,6 +88,14 @@ set('keep_releases', 3);
 set('writable_use_sudo', true);
 
 /**
+ * writable_chmod_mode
+ * @package deployer
+ *
+ * What permissions should "writable_dirs" have?
+ */
+set('writable_chmod_mode', '0775');
+
+/**
  * writable_dirs
  * @package deployer
  *
