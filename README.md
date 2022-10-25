@@ -60,6 +60,7 @@ You need for this process:
     - Allow incoming SSH connections from `deployment.service.liquidlight.uk`
     - Ensure `git` and `composer` are installed
 11. Commit all your changes and push to Gitlab (e.g. `Task: Add deployer for automated deployments`)
+12. Set a CI variable of `DEPLOYER_FLAGS` to `-vvv` for maximum output
 12. On Gitlab, click the ▶️ button and watch the logs for issues
     - You may need to set the `bin/php` or `bin/composer` paths (e.g. NLW)
     - The `http_user` may need to be set (e.g. CST)
