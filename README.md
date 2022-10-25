@@ -48,23 +48,23 @@ You need for this process:
 8. Ensure your `.env` (or `.env.local`) file has `INSTANCE="local"` in it (if using development server, this already exists)
 9. Run `./vendor/bin/dep deploy:prepare production` - this makes the skeleton files on live and ensures you can connect
 10. On the live server - Populate the `shared` folder (located in your `deploy_path`) with folder & file structure of that below
-   - Make sure the `.env` file has:
-      - `INSTANCE="production"` (it should match your `host.ci.yaml` name)
-      - `TYPO3_DB_HOST="localhost"` (or wherever the database is hosted)
+    - Make sure the `.env` file has:
+       - `INSTANCE="production"` (it should match your `host.ci.yaml` name)
+       - `TYPO3_DB_HOST="localhost"` (or wherever the database is hosted)
 11. On Gitlab - Add a CI/CD variable with the title/key of `DEPLOY_HOST_PRODUCTION` and the value being set to the contents of `host.ci.yaml` (which you populated in step 6)
-   - Go to the repository
-   - Click **Settings -> CI/CD** on the left
-   - Expand **Variables** and click **Add Variable**
+    - Go to the repository
+    - Click **Settings -> CI/CD** on the left
+    - Expand **Variables** and click **Add Variable**
 10. On the live server
     - add the Deployment server SSH **public key** to the `authorized_keys` file - this can be found in Lastpass under "Gitlab CI Deployer"
     - Allow incoming SSH connections from `deployment.service.liquidlight.uk`
     - Ensure `git` and `composer` are installed
 11. Commit all your changes and push to Gitlab (e.g. `Task: Add deployer for automated deployments`)
 12. On Gitlab, click the ▶️ button and watch the logs for issues
-   - You may need to set the `bin/php` or `bin/composer` paths (e.g. NLW)
-   - The `http_user` may need to be set (e.g. CST)
-   - The `writable_mode` might need to be changed
-   - You may need to set `set('writable_use_sudo', false);` if there is no sudo
+    - You may need to set the `bin/php` or `bin/composer` paths (e.g. NLW)
+    - The `http_user` may need to be set (e.g. CST)
+    - The `writable_mode` might need to be changed
+    - You may need to set `set('writable_use_sudo', false);` if there is no sudo
 13. If there are any folders or files on the live server you want to keep (e.g. `blog` folder), these need to be moved into the `shared` folder and added to the `shared_files` array (see CST & Liquid Light as examples)
 14. Update the file in `/etc/cron.d/[domain_name]` to point to the correct place
 15. Update the `apache` config (if converting an existing site) to point to `current/html`
