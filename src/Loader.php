@@ -18,6 +18,7 @@ class Loader
 
 		foreach ([
 			'config.php',
+			'environments/cpanel.php',
 			'environments/vps.php',
 			'hosts/hosts.yaml.php',
 			'hosts/local.php',

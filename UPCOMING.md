@@ -6,6 +6,7 @@
 - Create `vps` environment for specific tasks
 - Create `reload:php` task for VPS environments
 - Set `bin/composer` in vps environment 
+- Create `cpanel` environmet for specific config
 
 #### Dependencies
 
