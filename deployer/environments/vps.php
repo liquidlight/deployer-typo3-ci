@@ -11,5 +11,16 @@ if (get('deployer_environment', false) === 'vps') {
 	 */
 	set('writable_use_sudo', true);
 
+	/**
+	* bin/composer
+	* @package deployer
+	*
+	* Set default composer path
+	*/
+	set('bin/composer', '/usr/local/bin/composer');
+
+	/**
+	 * Tasks
+	 */
 	after('deploy', 'reload:php-fpm');
 }

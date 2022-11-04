@@ -54,13 +54,6 @@ if (!file_exists(getcwd() . '/.env')) {
  */
 set('composer_channel', 2);
 
-/**
- * bin/composer
- * @package deployer
- *
- * Set default composer path
- */
-set('bin/composer', '/usr/local/bin/composer');
 
 /**
  * shared_files
