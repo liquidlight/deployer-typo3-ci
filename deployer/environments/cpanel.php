@@ -11,4 +11,3 @@ if (get('deployer_environment', false) === 'cpanel') {
 	 */
 	set('writable_mode', 'chmod');
 }
-
