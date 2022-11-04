@@ -8,3 +8,10 @@ namespace Deployer;
 host('production')
 	->set('branch', 'main')
 ;
+
+/**
+ * Set production as live
+ *
+ * This makes `db:push` ask
+ */
+set('instance_live_name', 'production');
