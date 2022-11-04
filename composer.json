@@ -2,7 +2,7 @@
     "name": "liquidlight/deployer",
     "version": "1.0.0",
     "require": {
-        "sourcebroker/deployer-extended-typo3": "^18.0"
+        "sourcebroker/deployer-extended-typo3": "^19.0"
     },
 	"autoload": {
         "psr-4": {
