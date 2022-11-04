@@ -18,6 +18,7 @@ class Loader
 
 		foreach ([
 			'config.php',
+			'environments/vps.php',
 			'hosts/hosts.yaml.php',
 			'hosts/local.php',
 			'hosts/staging.php',
@@ -25,6 +26,7 @@ class Loader
 			'tasks/assets_deploy.php',
 			'tasks/cache_clear_php_http.php',
 			'tasks/deploy.php',
+			'tasks/reload_php.php',
 			'tasks/typo3cms_cache_flush.php',
 		] as $path) {
 			require_once $this->path('vendor/liquidlight/deployer/deployer/' . $path);
