@@ -60,8 +60,8 @@ set('composer_channel', 2);
 *
 * Set default composer path if a VPS
 */
-set('bin/composer', function() {
-	if(in_array(get('ll_deployer_environment'), ['vps'])) {
+set('bin/composer', function () {
+	if (in_array(get('ll_deployer_environment'), ['vps'])) {
 		return '/usr/local/bin/composer';
 	}
 
@@ -100,8 +100,8 @@ set('writable_use_sudo', (in_array(get('ll_deployer_environment'), ['vps'])));
  *
  * What writeable mode should we use?
  */
-set('writable_mode', function() {
-	if(in_array(get('ll_deployer_environment'), ['cpanel'])) {
+set('writable_mode', function () {
+	if (in_array(get('ll_deployer_environment'), ['cpanel'])) {
 		return 'chmod';
 	}
 
