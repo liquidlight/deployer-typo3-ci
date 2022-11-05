@@ -64,8 +64,6 @@ set('bin/composer', function () {
 	if (in_array(get('ll_deployer_environment'), ['vps'])) {
 		return '/usr/local/bin/composer';
 	}
-
-	return get('bin/composer');
 });
 
 /**
@@ -104,8 +102,6 @@ set('writable_mode', function () {
 	if (in_array(get('ll_deployer_environment'), ['cpanel'])) {
 		return 'chmod';
 	}
-
-	return get('writable_mode');
 });
 
 /**

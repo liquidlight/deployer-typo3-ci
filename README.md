@@ -42,7 +42,7 @@ set('ll_deployer_asset_paths', ['app/nlw/Resources/Public']);
 
 You need for this process:
 
-- Site to be using composer
+- Site to be using composer†
 - Site to have a `package.json` file
 - Site to not rely on any tech from Gizmo
 
