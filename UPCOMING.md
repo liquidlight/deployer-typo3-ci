@@ -3,10 +3,10 @@
 #### Task
 
 - Set `live` environment to be `production` to prevent database overrides
-- Create `vps` environment for specific tasks
-- Create `reload:php` task for VPS environments
-- Set `bin/composer` in vps environment 
-- Create `cpanel` environmet for specific config
+- Set `reload:php` task for VPS environments
+- Set `bin/composer` in vps environment
+- Set `writable_use_sudo` for VPS envs
+- Set `writable_mode` for cPanel envs
 
 #### Dependencies
 

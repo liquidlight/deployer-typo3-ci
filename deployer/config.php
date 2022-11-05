@@ -54,6 +54,19 @@ if (!file_exists(getcwd() . '/.env')) {
  */
 set('composer_channel', 2);
 
+/**
+* bin/composer
+* @package deployer
+*
+* Set default composer path if a VPS
+*/
+set('bin/composer', function() {
+	if(in_array(get('ll_deployer_environment'), ['vps'])) {
+		return '/usr/local/bin/composer';
+	}
+
+	return get('bin/composer');
+});
 
 /**
  * shared_files
@@ -71,6 +84,29 @@ set('shared_files', array_merge(get('shared_files'), ['.env']));
  */
 set('keep_releases', 3);
 
+/**
+ * writable_use_sudo
+ * @package deployer
+ *
+ * Using sudo in writable commands?
+ *
+ * Set to true if the deployer environment is a `vps`
+ */
+set('writable_use_sudo', (in_array(get('ll_deployer_environment'), ['vps'])));
+
+/**
+ * writable_mode
+ * @package deployer
+ *
+ * What writeable mode should we use?
+ */
+set('writable_mode', function() {
+	if(in_array(get('ll_deployer_environment'), ['cpanel'])) {
+		return 'chmod';
+	}
+
+	return get('writable_mode');
+});
 
 /**
  * writable_chmod_mode

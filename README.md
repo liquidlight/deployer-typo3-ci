@@ -17,6 +17,19 @@ production:
   port: 22
 ```
 
+### Set environment
+
+It is advised you set an environment for extra config to be applied. This is set on the `host()` to allow for different envs for different hosts
+
+```php
+host('production')
+  ->set('ll_deployer_environment', 'cpanel')
+;
+```
+
+- `vps`
+- `cpanel`
+
 ### Assets upload
 
 Will upload `html/assets` if there as well as `app/*/Resources/Public`, but if you want others that are built then you need to specify them as an array
