@@ -60,10 +60,13 @@ set('composer_channel', 2);
 *
 * Set default composer path if a VPS
 */
-set('bin/composer', function () {
+$composer = get('bin/composer');
+set('bin/composer', function () use ($composer) {
 	if (in_array(get('ll_deployer_environment'), ['vps'])) {
 		return '/usr/local/bin/composer';
 	}
+
+	return $composer;
 });
 
 /**
