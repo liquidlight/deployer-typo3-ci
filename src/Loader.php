@@ -25,7 +25,8 @@ class Loader
 			'tasks/assets_deploy.php',
 			'tasks/cache_clear_php_http.php',
 			'tasks/deploy.php',
-			'tasks/reload_php.php',
+			'tasks/environment_post_deploy.php',
+			'tasks/environment_prepare.php',
 			'tasks/typo3cms_cache_flush.php',
 		] as $path) {
 			require_once $this->path('vendor/liquidlight/deployer/deployer/' . $path);
