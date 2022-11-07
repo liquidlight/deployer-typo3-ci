@@ -8,6 +8,7 @@
 - Set `writable_use_sudo` for VPS envs
 - Set `writable_mode` for cPanel envs
 - Create `environment:prepare` and `environment:post-deploy` tasks to handle environment specific settings
+- Add `plesk` as an accepted environment
 
 #### Dependencies
 

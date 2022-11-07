@@ -6,6 +6,8 @@ namespace Deployer;
  * Set config based on environment
  */
 task('environment:prepare', function () {
+	writeln('Environment: ' . (get('ll_deployer_environment') ?: 'Default'));
+
 	switch (get('ll_deployer_environment')) {
 		case 'vps':
 			/**
@@ -26,8 +28,7 @@ task('environment:prepare', function () {
 
 			break;
 		case 'cpanel':
-			writeln('Environment: cPanel');
-
+		case 'plesk':
 			/**
 			 * writable_mode
 			 * @package deployer
@@ -39,7 +40,6 @@ task('environment:prepare', function () {
 			break;
 
 		default:
-			writeln('Environment: Default');
 			break;
 	}
 });
