@@ -29,13 +29,7 @@ task('environment:prepare', function () {
 			break;
 		case 'cpanel':
 		case 'plesk':
-			/**
-			 * writable_mode
-			 * @package deployer
-			 *
-			 * What writeable mode should we use?
-			 */
-			set('writable_mode', 'chmod');
+
 
 			break;
 
