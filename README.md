@@ -1,6 +1,8 @@
 # Liquid Light Deployer
 
-PHP Deployer package for deploying Liquid Light TYPO3 websites. It uses Gitlab CI
+PHP Deployer package for deploying Liquid Light TYPO3 websites. It uses Gitlab CI to deploy to the host.
+
+This is an extension package which uses [PHP Deployer](https://deployer.org/)
 
 ## Options
 
@@ -42,7 +44,7 @@ set('ll_deployer_asset_paths', ['app/nlw/Resources/Public']);
 
 You need for this process:
 
-- Site to be using composer†
+- Site to be using composer
 - Site to have a `package.json` file
 - Site to not rely on any tech from Gizmo
 
@@ -80,10 +82,10 @@ You need for this process:
     - The `http_user` may need to be set (e.g. CST)
     - The `writable_mode` might need to be changed
     - You may need to set `set('writable_use_sudo', false);` if there is no sudo
-16. Once happy it is deploying correctly, remove the `DEPLOYER_FLAGS` CI variabel
+16. Once happy it is deploying correctly, remove the `DEPLOYER_FLAGS` CI variable
 16. If there are any folders or files on the live server you want to keep (e.g. `blog` folder), these need to be moved into the `shared` folder and added to the `shared_files` array (see CST & Liquid Light as examples)
-17. Update the file in `/etc/cron.d/[domain_name]` to point to the correct place
-18. Update the `apache` config (if converting an existing site) to point to `current/html`
+17. Update the file in `/etc/cron.d/[domain_name]` to point to the correct place (or update in cPanel)
+18. Update the `apache` config (if converting an existing site) to point to `current/html` (for cPanel, repoint the `public_html` symlink to `www/current/html`)
 
 ### Code Examples
 
@@ -97,26 +99,26 @@ namespace Deployer;
 require_once __DIR__ . '/vendor/sourcebroker/deployer-loader/autoload.php';
 new \LiquidLight\Deployer\Loader(__DIR__);
 
+/**
+ * Hosts
+ */
+
+// Production
 host('production')
+	->set('ll_deployer_environment', 'cpanel')
 	->set('deploy_path', '/var/www/[domain]')
-	->set('writable_mode', 'chmod')
 ;
-
-task('reload:php-fpm', function () {
-	run('sudo /etc/init.d/php7.4-fpm reload');
-});
-
-after('deploy', 'reload:php-fpm');
 ```
 
 ### `package.json`
 
 ```
-   "scripts": {
-		"dev": "./node_modules/.bin/gulp watch --dev",
-		"watch": "./node_modules/.bin/gulp watch",
-		"build": "./node_modules/.bin/gulp ci"
-	},
+    "scripts": {
+        "dev": "./node_modules/.bin/gulp watch --dev",
+        "watch": "./node_modules/.bin/gulp watch",
+        "build": "./node_modules/.bin/gulp compile",
+        "gulp": "./node_modules/.bin/gulp"
+    },
 ```
 
 ### `.gitlab-ci.yml`
