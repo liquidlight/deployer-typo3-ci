@@ -33,4 +33,5 @@ task('environment:post-deploy', function () {
 	}
 });
 
+after('deploy', 'deploy:writable');
 after('deploy', 'environment:post-deploy');
