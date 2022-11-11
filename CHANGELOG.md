@@ -1,3 +1,16 @@
+# 1.2.0
+
+**11th November 2022**
+
+#### Task
+
+- Allow db and media to be pushed to live (with confirmation)
+- Globally set writeable to recursive
+- Set `writeable_mode` to group (and set group as `www-data`) for VPS
+- Carry out chmod mode anyway for `vps` (code taken from main deployer package)
+- Move `deploy:writable` to happen _after_ `deploy` - the typo3 `install:fixfolderstructure` was wiping out permissions
+
+
 # 1.1.0
 
 **7th November 2022**
