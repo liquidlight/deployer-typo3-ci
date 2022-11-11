@@ -71,6 +71,22 @@ set('shared_files', array_merge(get('shared_files'), ['.env']));
 set('keep_releases', 3);
 
 /**
+ * db_allow_push_live
+ * @package deployer-extended-database
+ *
+ * Allow db to be pushed live (with confirmation)
+ */
+set('db_allow_push_live', true);
+
+/**
+ * media_allow_push_live
+ * @package deployer-extended-media
+ *
+ * Allow media to be pushed live (with confirmation)
+ */
+set('media_allow_push_live', true);
+
+/**
  * writable_mode
  * @package deployer
  *
