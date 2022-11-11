@@ -86,21 +86,14 @@ set('db_allow_push_live', true);
  */
 set('media_allow_push_live', true);
 
-/**
- * writable_mode
- * @package deployer
- *
- * What writeable mode should we use?
- */
-set('writable_mode', 'chmod');
 
 /**
- * writable_chmod_mode
+ * writable_recursive
  * @package deployer
  *
- * What permissions should "writable_dirs" have?
+ * Use recursive mode (-R)?
  */
-set('writable_chmod_mode', '0775');
+set('writable_recursive', true);
 
 /**
  * writable_dirs
