@@ -53,14 +53,6 @@ task('environment:prepare', function () {
 			 */
 			set('writable_mode', 'chmod');
 
-			/**
-			 * writable_chmod_mode
-			 * @package deployer
-			 *
-			 * What permissions should "writable_dirs" have?
-			 */
-			set('writable_chmod_mode', '0775');
-
 			break;
 
 		default:

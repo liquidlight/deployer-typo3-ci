@@ -86,6 +86,13 @@ set('db_allow_push_live', true);
  */
 set('media_allow_push_live', true);
 
+/**
+ * writable_chmod_mode
+ * @package deployer
+ *
+ * What permissions should "writable_dirs" have?
+ */
+set('writable_chmod_mode', '0775');
 
 /**
  * writable_recursive
