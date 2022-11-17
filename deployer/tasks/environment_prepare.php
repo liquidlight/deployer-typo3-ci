@@ -19,6 +19,14 @@ task('environment:prepare', function () {
 			set('writable_use_sudo', true);
 
 			/**
+			 * cleanup_use_sudo
+			 * @package deployer
+			 *
+			 * Whether to use sudo with cleanup task
+			 */
+			set('cleanup_use_sudo', true);
+
+			/**
 			 * writable_mode
 			 * @package deployer
 			 *
