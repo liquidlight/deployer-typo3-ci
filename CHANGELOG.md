@@ -1,3 +1,11 @@
+# 1.2.1
+
+**17th November 2022**
+
+#### Bug
+
+- Set cleanup to use `sudo` on VPS
+
 # 1.2.0
 
 **11th November 2022**
