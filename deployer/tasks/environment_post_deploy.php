@@ -3,12 +3,10 @@
 namespace Deployer;
 
 task('environment:post-deploy', function () {
-
 	/**
 	 * Reload PHP FPM
 	 */
 	if (get('ll_deployer_environment') === 'vps') {
-
 		/**
 		 * chmod
 		 * @package deployer
