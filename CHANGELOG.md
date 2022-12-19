@@ -1,3 +1,11 @@
+# 1.3.0
+
+**19th December 2022**
+
+#### Task
+
+- Remove reliance on `host.ci.yaml`
+
 # 1.2.1
 
 **17th November 2022**

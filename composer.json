@@ -1,6 +1,6 @@
 {
     "name": "liquidlight/deployer",
-    "version": "1.2.1",
+    "version": "1.3.0",
     "require": {
         "sourcebroker/deployer-extended-typo3": "^19.0"
     },
