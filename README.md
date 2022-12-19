@@ -8,15 +8,12 @@ This is an extension package which uses [PHP Deployer](https://deployer.org/)
 
 ### Hosts
 
-Make a `host.ci.yaml` with the details if you wish to connect locally.
+Set the hostname of the server in the `deploy.php` file - the rest of the connection details should be in your `.ssh/config` file
 
-E.g.
-
-```yaml
-production:
-  hostname: 123.123.123
-  user: username
-  port: 22
+```php
+host('production')
+  ->set('hostname', 'client.xxx')
+;
 ```
 
 ### Set environment
