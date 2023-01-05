@@ -83,6 +83,7 @@ You need for this process:
 16. If there are any folders or files on the live server you want to keep (e.g. `blog` folder), these need to be moved into the `shared` folder and added to the `shared_files` array (see CST & Liquid Light as examples)
 17. Update the file in `/etc/cron.d/[domain_name]` to point to the correct place (or update in cPanel)
 18. Update the `apache` config (if converting an existing site) to point to `current/html` (for cPanel, repoint the `public_html` symlink to `www/current/html`)
+19. Regenerate the SSL certificate with Certbot to point to the new web root
 
 ### Code Examples
 
