@@ -12,7 +12,7 @@ Set the hostname of the server in the `deploy.php` file - the rest of the connec
 
 ```php
 host('production')
-  ->set('hostname', 'client.xxx')
+  ->hostname('client.xxx')
 ;
 ```
 
@@ -54,36 +54,31 @@ You need for this process:
 5. Add deployment stage to `.gitlab-ci.yml` (see below)
    - Update the environment URL
    - Verify [front-end asset build process](https://gitlab.lldev.co.uk/devops/gitlab-ci/-/blob/main/jobs/deployment/deployer.deploy.gitlab-ci.yml) is correct for the site
-6. Add `host.ci.yaml` to `.gitignore`
-7. Make a `host.ci.yaml` file and populate with the sever details (see example above)
-8. Ensure your `.env` (or `.env.local`) file has `INSTANCE="local"` in it (if using development server, this already exists)
-9. Run `./vendor/bin/dep deploy:prepare production` - this makes the skeleton files on live and ensures you can connect
-10. On the live server - Populate the `shared` folder (located in your `deploy_path`) with folder & file structure of that below. Run the following in `shared`
+6. Ensure your `.env` (or `.env.local`) file has `INSTANCE="local"` in it (if using development server, this already exists)
+7. Run `./vendor/bin/dep deploy:prepare production` - this makes the skeleton files on live and ensures you can connect
+8.  On the live server - Populate the `shared` folder (located in your `deploy_path`) with folder & file structure of that below. Run the following in `shared`
     - `touch .env`
     - `mkdir -p var html/{fileadmin,typo3temp,uploads}/`
     - Add details to the `.env` file and make sure it has:
-       - `INSTANCE="production"` (it should match your `host.ci.yaml` name)
+       - `INSTANCE="production"`
        - `TYPO3_DB_HOST="localhost"` (or wherever the database is hosted)
-11. On Gitlab - Add a CI/CD variable with the title/key of `DEPLOY_HOST_PRODUCTION` and the value being set to the contents of `host.ci.yaml` (which you populated in step 7)
+9.  On Gitlab - Add a CI/CD variable with the title/key of `DEPLOY_HOST_PRODUCTION` and the value being that of the SSH config valuer
     - Go to the repository
     - Click **Settings -> CI/CD** on the left
     - Expand **Variables** and click **Add Variable**
-12. Set a second CI variable of `DEPLOYER_FLAGS` to `-vvv` for maximum output
-13. On the live server check that:
-    - add the Deployment server SSH **public key** to the `authorized_keys` file - this can be found in Lastpass under "Gitlab CI Deployer"
-    - Allow incoming SSH connections from `deployment.service.liquidlight.uk`
-    - Ensure `git` and `composer` are installed
-14. Commit all your changes and push to Gitlab (e.g. `Task: Add deployer for automated deployments`) and push to Gitlab
-15. On Gitlab, click the ▶️ button and watch the logs for issues
+10.  Set a second CI variable of `DEPLOYER_FLAGS` to `-vvv` for maximum output
+11.  On the live server, check that `git` and `composer` are installed
+12. If there are any folders or files on the live server you want to keep (e.g. `blog` folder), these need to be moved into the `shared` folder and added to the `shared_files` array (see CST & Liquid Light as examples)
+13. Commit all your changes and push to Gitlab (e.g. `Task: Add deployer for automated deployments`) and push to Gitlab
+14. On Gitlab, click the ▶️ button and watch the logs for issues
     - You may need to set the `bin/php` or `bin/composer` paths (e.g. NLW)
     - The `http_user` may need to be set (e.g. CST)
     - The `writable_mode` might need to be changed
     - You may need to set `set('writable_use_sudo', false);` if there is no sudo
-16. Once happy it is deploying correctly, remove the `DEPLOYER_FLAGS` CI variable
-16. If there are any folders or files on the live server you want to keep (e.g. `blog` folder), these need to be moved into the `shared` folder and added to the `shared_files` array (see CST & Liquid Light as examples)
-17. Update the file in `/etc/cron.d/[domain_name]` to point to the correct place (or update in cPanel)
-18. Update the `apache` config (if converting an existing site) to point to `current/html` (for cPanel, repoint the `public_html` symlink to `www/current/html`)
-19. Regenerate the SSL certificate with Certbot to point to the new web root
+15. Once happy it is deploying correctly, remove the `DEPLOYER_FLAGS` CI variable
+16. Update the file in `/etc/cron.d/[domain_name]` to point to the correct place (or update in cPanel)
+17. Update the `apache` config (if converting an existing site) to point to `current/html` (for cPanel, repoint the `public_html` symlink to `www/current/html`)
+18. Regenerate the [SSL certificate with Certbot](https://hub.lldocs.dev/sysadmin/debian/ssl-certificates?_highlight=cert#installing-and-generating-ssl-certificate) to point to the new web root
 
 ### Code Examples
 
@@ -103,6 +98,7 @@ new \LiquidLight\Deployer\Loader(__DIR__);
 
 // Production
 host('production')
+  ->hostname('client.xxx')
 	->set('ll_deployer_environment', 'cpanel')
 	->set('deploy_path', '/var/www/[domain]')
 ;
