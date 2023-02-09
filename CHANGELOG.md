@@ -1,3 +1,9 @@
+# 2.0.0
+
+#### Feature
+
+- Update `sourcebroker/deployer-extended-typo3` to version 20 (which brings in deployer version 7). [See the documentation](https://gitlab.lldev.co.uk/packages/typo3/deployer#upgrading-to-version-2) for how to migrate
+
 # 1.3.0
 
 **19th December 2022**
