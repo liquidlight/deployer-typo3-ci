@@ -6,6 +6,6 @@ namespace Deployer;
  * Set local host
  */
 host('local')
-	->hostname('local')
+	->set('hostname', 'local')
 	->set('deploy_path', getcwd())
 ;
