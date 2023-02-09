@@ -4,6 +4,14 @@ PHP Deployer package for deploying Liquid Light TYPO3 websites. It uses Gitlab C
 
 This is an extension package which uses [PHP Deployer](https://deployer.org/)
 
+## Upgrading to Version 2
+
+Version 2 brings with it Deployer 7, which requires some changes:
+
+- In your `deploy.php`, change `hostname('client')` to `set('hostname', 'client')`
+- **When pushing live for the first time after the upgrade** add a Gitlab CI variable of `DEPLOYER_FLAGS` with the value of `-o release_name=XXX` - where XXX is the current release number + 1. Once deployed, delete this variable. More details are in the [deployer docs](https://deployer.org/docs/7.x/UPGRADE#step-2-deploy)
+
+
 ## Options
 
 ### Hosts
@@ -12,7 +20,7 @@ Set the hostname of the server in the `deploy.php` file - the rest of the connec
 
 ```php
 host('production')
-  ->hostname('client.xxx')
+  ->set('hostname', 'client.xxx')
 ;
 ```
 
@@ -98,7 +106,7 @@ new \LiquidLight\Deployer\Loader(__DIR__);
 
 // Production
 host('production')
-  ->hostname('client.xxx')
+    ->set('hostname', 'client.xxx')
 	->set('ll_deployer_environment', 'cpanel')
 	->set('deploy_path', '/var/www/[domain]')
 ;

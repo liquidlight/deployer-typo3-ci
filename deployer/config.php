@@ -35,15 +35,17 @@ if (isset(
 }
 
 /**
- * default_stage
+ * local_host
+ *
  * @package deployer-extended-database
  *
  * If you just run "deploy" what happens?
  *
  * Check if file doesn't exist - e.g. deploying via CI
+ * This is needed for the database backup
  */
 if (!file_exists(getcwd() . '/.env')) {
-	set('default_stage', 'local');
+	set('local_host', 'local');
 }
 
 /**
