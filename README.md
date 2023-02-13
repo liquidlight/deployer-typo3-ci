@@ -9,7 +9,7 @@ This is an extension package which uses [PHP Deployer](https://deployer.org/)
 Version 2 brings with it Deployer 7, which requires some changes:
 
 - In your `deploy.php`, change `hostname('client')` to `set('hostname', 'client')`
-- **When pushing live for the first time after the upgrade** add a Gitlab CI variable of `DEPLOYER_FLAGS` with the value of `-o release_name=XXX` - where XXX is the current release number + 1. Once deployed, delete this variable. More details are in the [deployer docs](https://deployer.org/docs/7.x/UPGRADE#step-2-deploy)
+- **When pushing live for the first time after the upgrade** add a Gitlab CI variable of `DEPLOYER_FLAGS` with the value of `-o release_name=XXX -vvv` - where XXX is the current release number + 1. Once deployed, delete this variable. More details are in the [deployer docs](https://deployer.org/docs/7.x/UPGRADE#step-2-deploy)
 
 
 ## Options
