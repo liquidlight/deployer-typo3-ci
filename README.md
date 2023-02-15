@@ -54,28 +54,28 @@ You need for this process:
 - Site to not rely on any tech from Gizmo
 
 1. Run a `composer update` and `npm update` (commit any changes to lock files)
-2. Create a `deploy.php` in the root of the project - **see below** for example contents
+2. On the live server, check that `git` and `composer` are installed
+3. Create a `deploy.php` in the root of the project - **see below** for example contents
    - Set the `deploy_path` to `/var/www/[domain]` (you may need to deploy to a parallel folder as an interim)
    - Make sure the default SSH user has read & write access to the `deploy_path` on the live server (`775`)
-3. `composer req liquidlight/deployer`
-4. Ensure the **npm `scripts` block** (below) is in your `package.json`
-5. Add deployment stage to `.gitlab-ci.yml` (see below)
+4. `composer req liquidlight/deployer`
+5. Ensure the **npm `scripts` block** (below) is in your `package.json`
+6. Add deployment stage to `.gitlab-ci.yml` (see below)
    - Update the environment URL
    - Verify [front-end asset build process](https://gitlab.lldev.co.uk/devops/gitlab-ci/-/blob/main/jobs/deployment/deployer.deploy.gitlab-ci.yml) is correct for the site
-6. Ensure your `.env` (or `.env.local`) file has `INSTANCE="local"` in it (if using development server, this already exists)
-7. Run `./vendor/bin/dep deploy:prepare production` - this makes the skeleton files on live and ensures you can connect
-8.  On the live server - Populate the `shared` folder (located in your `deploy_path`) with folder & file structure of that below. Run the following in `shared`
+7. Ensure your `.env` (or `.env.local`) file has `INSTANCE="local"` in it (if using development server, this already exists)
+8. Run `./vendor/bin/dep environment:prepare production` - this makes the skeleton files on live and ensures you can connect
+9.  On the live server - Populate the `shared` folder (located in your `deploy_path`) with folder & file structure of that below. Run the following in `shared`
     - `touch .env`
     - `mkdir -p var html/{fileadmin,typo3temp,uploads}/`
     - Add details to the `.env` file and make sure it has:
        - `INSTANCE="production"`
        - `TYPO3_DB_HOST="localhost"` (or wherever the database is hosted)
-9.  On Gitlab - Add a CI/CD variable with the title/key of `DEPLOY_HOST_PRODUCTION` and the value being that of the SSH config valuer
+10. On Gitlab - Add a CI/CD variable with the title/key of `DEPLOY_HOST_PRODUCTION` and the value being that of the SSH config valuer
     - Go to the repository
     - Click **Settings -> CI/CD** on the left
     - Expand **Variables** and click **Add Variable**
-10.  Set a second CI variable of `DEPLOYER_FLAGS` to `-vvv` for maximum output
-11.  On the live server, check that `git` and `composer` are installed
+11.  Set a second CI variable of `DEPLOYER_FLAGS` to `-vvv` for maximum output
 12. If there are any folders or files on the live server you want to keep (e.g. `blog` folder), these need to be moved into the `shared` folder and added to the `shared_files` array (see CST & Liquid Light as examples)
 13. Commit all your changes and push to Gitlab (e.g. `Task: Add deployer for automated deployments`) and push to Gitlab
 14. On Gitlab, click the ▶️ button and watch the logs for issues
@@ -114,7 +114,7 @@ host('production')
 
 ### `package.json`
 
-```
+```json
     "scripts": {
         "dev": "./node_modules/.bin/gulp watch --dev",
         "watch": "./node_modules/.bin/gulp watch",
@@ -125,7 +125,7 @@ host('production')
 
 ### `.gitlab-ci.yml`
 
-```
+```yaml
 ###
 # Gitlab CI
 #
