@@ -89,7 +89,7 @@ You need for this process:
 16. Update the file in `/etc/cron.d/[domain_name]` to point to the correct place (or update in cPanel)
 17. Update the `apache` config (if converting an existing site) to point to `current/html` (for cPanel, repoint the `public_html` symlink to `www/current/html`)
 18. Regenerate the [SSL certificate with Certbot](https://hub.lldocs.dev/sysadmin/debian/ssl-certificates?_highlight=cert#installing-and-generating-ssl-certificate) to point to the new web root (you can run `certbot renew --dry-run` to see the currently active domains & sites)
-19. Run an scheduler tasks that might make temporary files
+19. The search scheduler & any other tasks that might make temporary files
 
 ### Code Examples
 
