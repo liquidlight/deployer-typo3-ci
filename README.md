@@ -51,6 +51,7 @@ You need for this process:
 
 - Site to be using composer
 - Site to have a `package.json` file
+- Site to be using `.env` files
 - Site to not rely on any tech from Gizmo
 
 1. Run a `composer update` and `npm update` (commit any changes to lock files)
@@ -64,14 +65,15 @@ You need for this process:
    - Update the environment URL
    - Verify [front-end asset build process](https://gitlab.lldev.co.uk/devops/gitlab-ci/-/blob/main/jobs/deployment/deployer.deploy.gitlab-ci.yml) is correct for the site
 7. Ensure your `.env` (or `.env.local`) file has `INSTANCE="local"` in it (if using development server, this already exists)
-8. Run `./vendor/bin/dep environment:prepare production` - this makes the skeleton files on live and ensures you can connect
+8. Run `./vendor/bin/dep deploy production` - This will fail, but will make the files and folders needed on the live server
 9.  On the live server - Populate the `shared` folder (located in your `deploy_path`) with folder & file structure of that below. Run the following in `shared`
-    - `touch .env`
-    - `mkdir -p var html/{fileadmin,typo3temp,uploads}/`
+    - `touch .env` (or `cp` this if there is already a live site)
+    - `mkdir -p var html/{fileadmin,typo3temp,uploads}/` - if this is a site being migrated, copy the contents of `fileadmin` and `uploads` (`rsync -vaz /var/www/thebiodiversityconsultancy.com/html/fileadmin/ fileadmin/`)
+    - `sudo find . -type d -exec chmod 775 {} \;` - reset the folder permissions
     - Add details to the `.env` file and make sure it has:
        - `INSTANCE="production"`
        - `TYPO3_DB_HOST="localhost"` (or wherever the database is hosted)
-10. On Gitlab - Add a CI/CD variable with the title/key of `DEPLOY_HOST_PRODUCTION` and the value being that of the SSH config valuer
+10. On Gitlab - Add a CI/CD variable with the title/key of `DEPLOY_HOST_PRODUCTION` and the value being that of the SSH config value
     - Go to the repository
     - Click **Settings -> CI/CD** on the left
     - Expand **Variables** and click **Add Variable**
@@ -83,10 +85,11 @@ You need for this process:
     - The `http_user` may need to be set (e.g. CST)
     - The `writable_mode` might need to be changed
     - You may need to set `set('writable_use_sudo', false);` if there is no sudo
-15. Once happy it is deploying correctly, remove the `DEPLOYER_FLAGS` CI variable
+15. Once happy it is deploying correctly, remove the `DEPLOYER_FLAGS` CI variable & add `deployer` as a tag
 16. Update the file in `/etc/cron.d/[domain_name]` to point to the correct place (or update in cPanel)
 17. Update the `apache` config (if converting an existing site) to point to `current/html` (for cPanel, repoint the `public_html` symlink to `www/current/html`)
-18. Regenerate the [SSL certificate with Certbot](https://hub.lldocs.dev/sysadmin/debian/ssl-certificates?_highlight=cert#installing-and-generating-ssl-certificate) to point to the new web root
+18. Regenerate the [SSL certificate with Certbot](https://hub.lldocs.dev/sysadmin/debian/ssl-certificates?_highlight=cert#installing-and-generating-ssl-certificate) to point to the new web root (you can run `certbot renew --dry-run` to see the currently active domains & sites)
+19. Run an scheduler tasks that might make temporary files
 
 ### Code Examples
 
@@ -106,7 +109,7 @@ new \LiquidLight\Deployer\Loader(__DIR__);
 
 // Production
 host('production')
-    ->set('hostname', 'client.xxx')
+  ->set('hostname', 'client.xxx')
 	->set('ll_deployer_environment', 'cpanel')
 	->set('deploy_path', '/var/www/[domain]')
 ;
@@ -115,12 +118,12 @@ host('production')
 ### `package.json`
 
 ```json
-    "scripts": {
-        "dev": "./node_modules/.bin/gulp watch --dev",
-        "watch": "./node_modules/.bin/gulp watch",
-        "build": "./node_modules/.bin/gulp compile",
-        "gulp": "./node_modules/.bin/gulp"
-    },
+  "scripts": {
+    "dev": "./node_modules/.bin/gulp watch --dev",
+    "watch": "./node_modules/.bin/gulp watch",
+    "build": "./node_modules/.bin/gulp compile",
+    "gulp": "./node_modules/.bin/gulp"
+  },
 ```
 
 ### `.gitlab-ci.yml`
