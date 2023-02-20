@@ -68,7 +68,7 @@ You need for this process:
 8. Run `./vendor/bin/dep deploy production` - This will fail, but will make the files and folders needed on the live server
 9.  On the live server - Populate the `shared` folder (located in your `deploy_path`) with folder & file structure of that below. Run the following in `shared`
     - `touch .env` (or `cp` this if there is already a live site)
-    - `mkdir -p var html/{fileadmin,typo3temp,uploads}/` - if this is a site being migrated, copy the contents of `fileadmin` and `uploads` (`rsync -vaz /var/www/thebiodiversityconsultancy.com/html/fileadmin/ fileadmin/`)
+    - `mkdir -p var html/{fileadmin,typo3temp,uploads}/` - if this is a site being migrated, copy the contents of `fileadmin` and `uploads` (`rsync -vaz [path/to/site]/html/fileadmin/ fileadmin/`)
     - `sudo find . -type d -exec chmod 775 {} \;` - reset the folder permissions
     - Add details to the `.env` file and make sure it has:
        - `INSTANCE="production"`
