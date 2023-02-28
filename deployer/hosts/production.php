@@ -7,6 +7,7 @@ namespace Deployer;
  */
 host('production')
 	->set('branch', 'main')
+	->set('log_files', 'var/log/typo3_*.log')
 ;
 
 /**
