@@ -57,7 +57,7 @@ You need for this process:
 1. Run a `composer update` and `npm update` (commit any changes to lock files)
 2. On the live server, check that `git` and `composer` are installed
 3. Create a `deploy.php` in the root of the project - **see below** for example contents
-   - Set the `deploy_path` to `/var/www/[domain]` (you may need to deploy to a parallel folder as an interim)
+   - Set the `deploy_path` to `/var/www/[domain]` or `/home/[user]/www` if using cPanel (you may need to deploy to a parallel folder as an interim)
    - Make sure the default SSH user has read & write access to the `deploy_path` on the live server (`775`)
 4. `composer req liquidlight/deployer`
 5. Ensure the **npm `scripts` block** (below) is in your `package.json`
@@ -70,7 +70,7 @@ You need for this process:
     - `touch .env` (or `cp` this if there is already a live site)
     - `mkdir -p var html/{fileadmin,typo3temp,uploads}/` - if this is a site being migrated, copy the contents of `fileadmin` and `uploads` (`rsync -vaz [path/to/site]/html/fileadmin/ fileadmin/`)
     - `sudo find . -type d -exec chmod 775 {} \;` - reset the folder permissions
-    - Add details to the `.env` file and make sure it has:
+    - Add details to the `.env` file and make sure it has the follow - see below for examples
        - `INSTANCE="production"`
        - `TYPO3_DB_HOST="localhost"` (or wherever the database is hosted)
 10. On Gitlab - Add a CI/CD variable with the title/key of `DEPLOY_HOST_PRODUCTION` and the value being that of the SSH config value
@@ -168,4 +168,16 @@ production:deploy:
     url: [domain name - including https]
   extends:
     - .production:deploy
+```
+
+### `.env`
+
+```
+INSTANCE="production"
+
+# DB
+TYPO3_DB_USER=""
+TYPO3_DB_PASSWORD=""
+TYPO3_DB_NAME=""
+TYPO3_DB_HOST="localhost"
 ```
