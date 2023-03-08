@@ -173,6 +173,7 @@ production:deploy:
 ### `.env`
 
 ```
+TYPO3_CONTEXT="Production"
 INSTANCE="production"
 
 # DB
