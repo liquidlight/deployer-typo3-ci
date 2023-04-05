@@ -65,7 +65,7 @@ You need for this process:
    - Update the environment URL
    - Verify [front-end asset build process](https://gitlab.lldev.co.uk/devops/gitlab-ci/-/blob/main/jobs/deployment/deployer.deploy.gitlab-ci.yml) is correct for the site
 7. Ensure your `.env` (or `.env.local`) file has `INSTANCE="local"` in it (if using development server, this already exists)
-8. Run `./vendor/bin/dep deploy production` - This will fail, but will make the files and folders needed on the live server
+8. Run `./vendor/bin/dep deploy:setup production` - This creates the files and folders needed on the live server
 9.  On the live server - Populate the `shared` folder (located in your `deploy_path`) with folder & file structure of that below. Run the following in `shared`
     - `touch .env` (or `cp` this if there is already a live site)
     - `mkdir -p var html/{fileadmin,typo3temp,uploads}/` - if this is a site being migrated, copy the contents of `fileadmin` and `uploads` (`rsync -vaz [path/to/site]/html/fileadmin/ fileadmin/`)
