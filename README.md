@@ -79,7 +79,7 @@ You need for this process:
     - Expand **Variables** and click **Add Variable**
 11.  Set a second CI variable of `DEPLOYER_FLAGS` to `-vvv` for maximum output
 12. If there are any folders or files on the live server you want to keep (e.g. `blog` folder), these need to be moved into the `shared` folder and added to the `shared_files` array (see CST & Liquid Light as examples)
-13. Commit all your changes and push to Gitlab (e.g. `Task: Add deployer for automated deployments`) and push to Gitlab
+13. Commit all your changes and push to Gitlab (e.g. `feat: Add deployer for automated deployments`) and push to Gitlab
 14. On Gitlab, click the ▶️ button and watch the logs for issues
     - You may need to set the `bin/php` or `bin/composer` paths (e.g. NLW)
     - The `http_user` may need to be set (e.g. CST)
@@ -109,9 +109,9 @@ new \LiquidLight\Deployer\Loader(__DIR__);
 
 // Production
 host('production')
-  ->set('hostname', 'client.xxx')
+	->set('hostname', 'client.xxx')
 	->set('ll_deployer_environment', 'cpanel')
-	->set('deploy_path', '/var/www/[domain]')
+	->set('deploy_path', '/home/[user]/www')
 ;
 ```
 
@@ -143,6 +143,7 @@ include:
 
 stages:
   - linting
+  - testing
   - deployment
 
 # Define stages for jobs
@@ -160,6 +161,10 @@ scss:stylelint:
   stage: linting
   extends:
     - .scss:stylelint
+
+package:audit:
+  extends:
+    - .package:audit
 
 production:deploy:
   stage: deployment
