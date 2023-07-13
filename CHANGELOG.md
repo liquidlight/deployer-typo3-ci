@@ -1,3 +1,15 @@
+# 2.1.0
+
+**13th July 2023**
+
+#### Backend
+
+- Set `log_files` location for all environments
+
+#### Bug
+
+- Fix glob for resources to handle nested app folder
+
 # 2.0.0
 
 #### Feature
