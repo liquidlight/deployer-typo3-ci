@@ -13,7 +13,7 @@ task('deploy:assets', function () {
 	/**
 	 * Rsync local resources to handle compilation
 	 */
-	$paths = glob('app/*/Resources/Public') ?? [];
+	$paths = glob('app/**/Resources/Public') ?? [];
 	$paths = array_merge($paths, get('ll_deployer_asset_paths', []));
 
 	if (count($paths)) {
