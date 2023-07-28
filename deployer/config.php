@@ -105,6 +105,16 @@ set('writable_chmod_mode', '0775');
 set('writable_recursive', true);
 
 /**
+ * env
+ * @package deployer
+ *
+ * Remote environment variables.
+ */
+set('env', [
+	'COMPOSER_AUTH' => getenv('COMPOSER_AUTH'),
+]);
+
+/**
  * writable_dirs
  * @package deployer
  *
