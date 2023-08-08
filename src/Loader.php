@@ -21,7 +21,7 @@ class Loader
 			'hosts/local.php',
 			'hosts/staging.php',
 			'hosts/production.php',
-			'tasks/assets_deploy.php',
+			'tasks/deploy_assets.php',
 			'tasks/environment_post_deploy.php',
 			'tasks/environment_prepare.php',
 			'tasks/typo3cms_cache_flush.php',
