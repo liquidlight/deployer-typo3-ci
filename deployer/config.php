@@ -62,7 +62,9 @@ set('composer_channel', 2);
  *
  * Add .env as a shared file
  */
-set('shared_files', array_merge(get('shared_files'), ['.env']));
+if (!getenv('DEPLOY_DOTENV')) {
+	set('shared_files', array_merge(get('shared_files'), ['.env']));
+}
 
 /**
  * keep_releases

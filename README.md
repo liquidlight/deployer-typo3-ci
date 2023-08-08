@@ -45,6 +45,15 @@ Will upload `html/assets` if there as well as `app/*/Resources/Public`, but if y
 set('ll_deployer_asset_paths', ['app/nlw/Resources/Public']);
 ```
 
+### `.env` file upload
+
+Add the contents of your `.env` file as a CI/CD variable (ensure "file" is selected in the drop down) and set it as `DEPLOY_DOTENV_PRODUCTION`. Add the variables block to your `.gitlab-ci.yaml`
+
+```yaml
+  variables:
+    DEPLOY_DOTENV: $DEPLOY_DOTENV_PRODUCTION
+```
+
 ## Setup
 
 You need for this process:
@@ -67,16 +76,13 @@ You need for this process:
 7. Ensure your `.env` (or `.env.local`) file has `INSTANCE="local"` in it (if using development server, this already exists)
 8. Run `./vendor/bin/dep deploy:setup production` - This creates the files and folders needed on the live server
 9.  On the live server - Populate the `shared` folder (located in your `deploy_path`) with folder & file structure of that below. Run the following in `shared`
-    - `touch .env` (or `cp` this if there is already a live site)
     - `mkdir -p var html/{fileadmin,typo3temp,uploads}/` - if this is a site being migrated, copy the contents of `fileadmin` and `uploads` (`rsync -vaz [path/to/site]/html/fileadmin/ fileadmin/`)
     - `sudo find . -type d -exec chmod 775 {} \;` - reset the folder permissions
-    - Add details to the `.env` file and make sure it has the follow - see below for examples
-       - `INSTANCE="production"`
-       - `TYPO3_DB_HOST="localhost"` (or wherever the database is hosted)
 10. On Gitlab - Add a CI/CD variable with the title/key of `DEPLOY_HOST_PRODUCTION` and the value being that of the SSH config value
     - Go to the repository
     - Click **Settings -> CI/CD** on the left
     - Expand **Variables** and click **Add Variable**
+11. On Gitlab - Add a CI/CD variable with the title/key of `DEPLOY_DOTENV_PRODUCTION` and the value being that of the `.env` file - make sure **file** is selected in the _Type_ dropdown
 11.  Set a second CI variable of `DEPLOYER_FLAGS` to `-vvv` for maximum output
 12. If there are any folders or files on the live server you want to keep (e.g. `blog` folder), these need to be moved into the `shared` folder and added to the `shared_files` array (see CST & Liquid Light as examples)
 13. Commit all your changes and push to Gitlab (e.g. `feat: Add deployer for automated deployments`) and push to Gitlab
@@ -168,6 +174,8 @@ package:audit:
 
 production:deploy:
   stage: deployment
+  variables:
+    DEPLOY_DOTENV: $DEPLOY_DOTENV_PRODUCTION
   environment:
     name: production
     url: [domain name - including https]
