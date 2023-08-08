@@ -30,5 +30,3 @@ task('deploy:assets', function () {
 		}
 	}
 });
-
-after('deploy:vendors', 'deploy:assets');

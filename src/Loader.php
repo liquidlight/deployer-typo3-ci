@@ -22,10 +22,10 @@ class Loader
 			'hosts/staging.php',
 			'hosts/production.php',
 			'tasks/assets_deploy.php',
-			'tasks/cache_clear_php_http.php',
 			'tasks/environment_post_deploy.php',
 			'tasks/environment_prepare.php',
 			'tasks/typo3cms_cache_flush.php',
+			'tasks/deploy.php',
 		] as $path) {
 			require_once $this->path('vendor/liquidlight/deployer/deployer/' . $path);
 		}

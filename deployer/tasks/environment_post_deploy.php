@@ -30,6 +30,3 @@ task('environment:post-deploy', function () {
 		run('sudo ' . $process . ' reload');
 	}
 });
-
-after('deploy', 'deploy:writable');
-after('deploy', 'environment:post-deploy');

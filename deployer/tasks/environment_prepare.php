@@ -67,5 +67,3 @@ task('environment:prepare', function () {
 			break;
 	}
 });
-
-before('deploy:setup', 'environment:prepare');
