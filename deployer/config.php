@@ -142,6 +142,7 @@ set(
 	array_merge(
 		get('clear_paths'),
 		[
+			'.env.example',
 			'.gitlab',
 			'.gitlab-ci.yml',
 			'build/',
