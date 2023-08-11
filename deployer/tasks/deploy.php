@@ -85,12 +85,12 @@ task('deploy', [
 	// Read more on https://github.com/sourcebroker/deployer-extended#buffer-stop
 	'buffer:stop',
 
+	// Standard deployer task.
+	'deploy:writable',
+
 	// Carry out any post-deploy tasks
 	// Read more on https://gitlab.lldev.co.uk/packages/typo3/deployer#set-environment
 	'environment:post-deploy',
-
-	// Standard deployer task.
-	'deploy:writable',
 
 	// Standard deployer task.
 	'deploy:unlock',
