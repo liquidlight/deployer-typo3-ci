@@ -82,41 +82,51 @@ You need for this process:
 
 ### Converting Zync to Deployer
 
-1. Run a `composer update` and `npm update` (commit any changes to lock files)
+This should be carried out on Gizmo and assumes the server is a **VPS**. If it is cPanel, don't copy commands verbatum.
+
+1. Run a `composer update` and `ncu -t minor` (commit any changes to lock files)
+2. `t3fix`
 2. On the live server, check that `git` and `composer` are installed
+3. On the live server, update the apache config to point to a parallel folder (with `zync-` prefixed or similar) - rename the folder & restart apache
 3. Create a `deploy.php` in the root of the project - **see below** for example contents
-   - Set the `deploy_path` to `/var/www/[domain]` or `/home/[user]/www` if using cPanel (you may need to deploy to a parallel folder as an interim)
+   - Set the `deploy_path` to `/var/www/[domain]`
+   - Set the `ll_deployer_environment` to `vps`
    - Make sure the default SSH user has read & write access to the `deploy_path` on the live server (`775`)
 4. `composer req liquidlight/deployer`
 5. Ensure the **npm `scripts` block** (below) is in your `package.json`
 6. Add deployment stage to `.gitlab-ci.yml` (see below)
    - Update the environment URL
    - Verify [front-end asset build process](https://gitlab.lldev.co.uk/devops/gitlab-ci/-/blob/main/jobs/deployment/deployer.deploy.gitlab-ci.yml) is correct for the site
-7. Ensure your `.env` (or `.env.local`) file has `INSTANCE="local"` in it (if using development server, this already exists)
+7. Ensure your local `.env` (or `.env.local`) file has `INSTANCE="local"` in it (if using development server, this already exists)
 8. Run `./vendor/bin/dep deploy:setup production` - This creates the files and folders needed on the live server
 9.  On the live server - Populate the `shared` folder (located in your `deploy_path`) with folder & file structure of that below. Run the following in `shared`
     - `mkdir -p var html/{fileadmin,typo3temp,uploads}/` - if this is a site being migrated, copy the contents of `fileadmin` and `uploads` (`rsync -vaz [path/to/site]/html/fileadmin/ fileadmin/`)
     - `sudo find . -type d -exec chmod 775 {} \;` - reset the folder permissions
-10. On Gitlab - Add a CI/CD variable with the title/key of `DEPLOY_HOST_PRODUCTION` and the value being that of the SSH config value
+10. On Gitlab - Add a CI/CD variable with the title/key of `DEPLOY_HOST_PRODUCTION` and the value being that of the full SSH config value found in the Bastion repository (name, host, username and, if needed, port)
     - Go to the repository
     - Click **Settings -> CI/CD** on the left
     - Expand **Variables** and click **Add Variable**
-11. On Gitlab - Add a CI/CD variable with the title/key of `DEPLOY_DOTENV_PRODUCTION` and the value being that of the `.env` file - make sure **file** is selected in the _Type_ dropdown
+11. On Gitlab - Add a CI/CD variable with the title/key of `DEPLOY_DOTENV` and the value being that of the `.env` file - make sure **file** is selected in the _Type_ dropdown & the variable is scoped to the `production` environment
 11. Set a third CI variable of `DEPLOYER_FLAGS` to `-vvv` for maximum output
-12. If there are any folders or files on the live server you want to keep (e.g. `blog` folder), these need to be moved into the `shared` folder and added to the `shared_files` array (see CST & Liquid Light as examples) - these can be identified by folders ignored in the `project.inc`
+12. If there are any folders or files on the live server you want to keep (e.g. `blog` folder), these need to be moved into the `shared` folder and added to the `shared_files` array (see NLW & Vischer as examples) - these can be identified by folders ignored in the `project.inc` file
+13. `lint run`
 13. Commit all your changes and push to Gitlab (e.g. `feat: Add deployer for automated deployments`) and push to Gitlab
 14. On Gitlab, click the ▶️ button and watch the logs for issues
     - You may need to set the `bin/php` or `bin/composer` paths (e.g. NLW)
     - The `http_user` may need to be set (e.g. CST)
     - The `writable_mode` might need to be changed
     - You may need to set `set('writable_use_sudo', false);` if there is no sudo
+15. Check the file system in the new deploy folder (e.g any shared folders, env file etc)
+16. `cd` to the `shared/var` folder and run `sudo find . -type d -exec chmod 775 {} \;`
+16. `cd` to the `shared/html` folder and run `sudo find . -type d -exec chmod 775 {} \;`
+17. Update the `apache` config to point to the target dest with `current/html`
+20. Test the forms and search
 15. Once happy it is deploying correctly, remove the `DEPLOYER_FLAGS` CI variable & add `deployer` as a Topic in Gitlab (remove `npm-project` and `composer-project`)
 16. Update the file in `/etc/cron.d/[domain_name]` to point to the correct place (or update in cPanel)
-17. Update the `apache` config (if converting an existing site) to point to `current/html` (for cPanel, repoint the `public_html` symlink to `www/current/html`)
-18. Regenerate the [SSL certificate with Certbot](https://hub.lldocs.dev/sysadmin/debian/ssl-certificates?#installing-and-generating-ssl-certificate) to point to the new web root (you can run `certbot renew --dry-run` to see the currently active domains & sites)
+18. Regenerate the [SSL certificate with Certbot](https://hub.lldocs.dev/sysadmin/debian/ssl-certificates?#installing-and-generating-ssl-certificate) to point to the new web root (you can run `certbot renew --dry-run` to see the currently active domains & sites) - you may be able to search the `sudo su` bash history and update the webroot
 19. Run the search scheduler & any other tasks that might make temporary files to check they work
-20. Test the forms and search
 21. Consider setting up [Renovate](https://gitlab.lldev.co.uk/devops/renovate#set-up-a-new-repository)
+22. Set up [ddev](https://hub.lldocs.dev/sysadmin/legacy/ddev#setting-up-ddev)
 
 ### Code Examples
 
@@ -195,8 +205,6 @@ package:audit:
 
 production:deploy:
   stage: deployment
-  variables:
-    DEPLOY_DOTENV: $DEPLOY_DOTENV_PRODUCTION
   environment:
     name: production
     url: [domain name - including https]
