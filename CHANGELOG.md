@@ -1,4 +1,14 @@
+# 2.2.1
+
+**16th August 2023**
+
+#### Fix
+
+- Remove `deploy:check_composer_install` as it didn't take into account dev dependencies
+
 # 2.2.0
+
+**14th August 2023**
 
 #### Feature
 
@@ -7,7 +17,6 @@
 - Redefine the `deploy` tasks to add Liquid Light tasks and remove http cache clear (#3)
 - Allow uploading of `.env` file with `DEPLOY_DOTENV` environment variable
 - Add `labels` to environments to allow adding specific tasks
-
 
 # 2.1.0
 
