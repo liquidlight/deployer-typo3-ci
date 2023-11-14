@@ -11,4 +11,6 @@ host('staging')
 	->set('labels', [
 		'instance' => 'staging',
 	])
+	->set('keep_releases', 1)
+;
 ;
