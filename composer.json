@@ -1,19 +1,19 @@
 {
     "name": "liquidlight/deployer",
     "version": "2.2.1",
-    "require": {
-        "sourcebroker/deployer-extended-typo3": "^20.0"
-    },
-	"autoload": {
-        "psr-4": {
-            "LiquidLight\\Deployer\\": "src"
-        }
-    },
-	"minimum-stability": "stable",
     "authors": [
         {
             "name": "Mike Street",
             "email": "mike@liquidlight.co.uk"
         }
-    ]
+    ],
+    "require": {
+        "sourcebroker/deployer-extended-typo3": "^20.0"
+    },
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "LiquidLight\\Deployer\\": "src"
+        }
+    }
 }
