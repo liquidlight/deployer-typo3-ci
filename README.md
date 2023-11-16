@@ -1,13 +1,15 @@
 # Liquid Light Deployer
 
-PHP Deployer package for deploying Liquid Light TYPO3 websites. It is best used withing Gitlab CI as it can utlise several environment variables.
+This package is used by Liquid Light to deploy TYPO3 websites via Gitlab CI.
 
-The bais for this is [PHP Deployer](https://deployer.org/), however a lot of functionality comes from [deployer-extended-typo3](https://github.com/sourcebroker/deployer-extended-typo3) and it's many meta-packages.
+---
+It is best used within Gitlab CI as it can utilise several environment variables.
+
+The basis for this is [PHP Deployer](https://deployer.org/), however a lot of functionality comes from [deployer-extended-typo3](https://github.com/sourcebroker/deployer-extended-typo3) and it's many meta-packages.
 
 ## Options
 
 There are several settings [defined by default](./deployer/hosts) within this package for the most common hosts.
-
 
 ### Hosts
 
@@ -18,6 +20,14 @@ host('production')
   ->set('hostname', 'client.xxx')
 ;
 ```
+
+#### Existing Hosts
+
+The following hosts have a config file in the `deployer/hosts` file with some sensible defaults
+
+- production
+- staging
+- local
 
 ### Set environment
 
@@ -31,20 +41,27 @@ host('production')
 
 #### Options
 
-- `vps`
-- `cpanel`
+- `vps` - for a fully self-managed debian based vps
+- `cpanel` - for a site running with cPanel
 
 ### Assets upload
 
-Will upload `html/assets` if there as well as `app/*/Resources/Public`, but if you want others that are built then you need to specify them as an array
+This package will upload `html/assets` if there as well as `app/*/Resources/Public`, but if you want others that are built then you need to specify them as an array. This can be set globally or on a host by host basis
+
+e.g.
 
 ```php
-->set('ll_deployer_asset_paths', ['app/nlw/Resources/Public']);
+set(
+  'll_deployer_asset_paths',
+  [
+    '{{release_path}}/html/_assets'
+  ]
+);
 ```
 
 ### `.env` file upload
 
-Add the contents of your `.env` file as a CI/CD variable (ensure "file" is selected in the drop down) and set it as `DEPLOY_DOTENV_XXX`. This then needs to be set to an environment varibale of `DEPLOY_DOTENV` to be deployed.
+You can add the contents of your `.env` file as a CI/CD variable (ensure "file" is selected in the drop down) and set it as `DEPLOY_DOTENV_[ENVIRONMEENT NAME]`. This then needs to be set to an environment variable in your `.gitlab-ci.yaml` of `DEPLOY_DOTENV` to be deployed.
 
 ```yaml
   variables:
@@ -58,11 +75,10 @@ If the server has `OPCache` installed, it will need to be cleared on each deploy
 To do this, you need to declare an array in `public_urls` in the deploy file, along with adding the `cache:clear_php_http` task for the environment.
 
 1. Add `->set('public_urls', ['[URL]'])` to the `production` host in `deploy.php`
-2. Add the `cache:clear_php_http` task for prodiction intances (example below)
+2. Add the `cache:clear_php_http` task for production instances (example below)
 
 ```php
 on(select('instance=production'), function ($host) {
 	after('cache:clear_php_cli', 'cache:clear_php_http');
 });
 ```
-
