@@ -13,4 +13,3 @@ host('staging')
 	])
 	->set('keep_releases', 1)
 ;
-;
