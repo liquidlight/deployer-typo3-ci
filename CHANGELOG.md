@@ -1,3 +1,12 @@
+# 2.3.0
+
+**17th November 2023**
+
+#### Feature
+
+- Move the package to open-source and rename
+- Only keep 1 deployment for staging environment
+
 # 2.2.1
 
 **16th August 2023**
