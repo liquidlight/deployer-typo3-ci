@@ -1,13 +1,25 @@
 {
     "name": "liquidlight/deployer-typo3-ci",
     "description": "TYPO3 deployment via CI",
+    "license": "GPL-2.0+",
     "version": "2.2.1",
+    "readme": "./README.md",
     "authors": [
+        {
+            "name": "Liquid Light",
+            "email": "info@liquidlight.co.uk",
+            "homepage": "https://www.liquidlight.co.uk/"
+        },
         {
             "name": "Mike Street",
             "email": "mike@liquidlight.co.uk"
         }
     ],
+    "homepage": "https://github.com/liquidlight/deployer-typo3-ci",
+    "support": {
+        "issues": "https://github.com/liquidlight/deployer-typo3-ci/issues",
+        "source": "https://github.com/liquidlight/deployer-typo3-ci"
+    },
     "require": {
         "sourcebroker/deployer-extended-typo3": "^20.0"
     },
