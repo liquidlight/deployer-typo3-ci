@@ -1,5 +1,6 @@
 {
-    "name": "liquidlight/deployer",
+    "name": "liquidlight/deployer-typo3-ci",
+    "description": "TYPO3 deployment via CI",
     "version": "2.2.1",
     "authors": [
         {

@@ -1,8 +1,9 @@
 # Liquid Light Deployer
 
-This package is used by Liquid Light to deploy TYPO3 websites via Gitlab CI.
+This package is used by Liquid Light to deploy TYPO3 websites via CI - specifically Gitlab.
 
 ---
+
 It is best used within Gitlab CI as it can utilise several environment variables.
 
 The basis for this is [PHP Deployer](https://deployer.org/), however a lot of functionality comes from [deployer-extended-typo3](https://github.com/sourcebroker/deployer-extended-typo3) and it's many meta-packages.
