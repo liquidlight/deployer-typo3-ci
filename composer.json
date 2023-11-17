@@ -23,6 +23,9 @@
     "require": {
         "sourcebroker/deployer-extended-typo3": "^20.0"
     },
+    "replace": {
+        "liquidlight/deployer": "*"
+    },
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
