@@ -1,3 +1,12 @@
+# 2.3.1
+
+**21st November 2023**
+
+#### Fix
+
+- Make file loader relative to current file instead of hardcoding it
+
+
 # 2.3.0
 
 **17th November 2023**
