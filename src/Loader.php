@@ -28,7 +28,7 @@ class Loader
 			'tasks/typo3cms_cache_flush.php',
 			'tasks/deploy.php',
 		] as $path) {
-			require_once $this->path('vendor/liquidlight/deployer/deployer/' . $path);
+			require_once dirname(__FILE__) . '/../deployer/' . $path;
 		}
 	}
 
