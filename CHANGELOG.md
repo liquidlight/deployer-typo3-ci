@@ -1,3 +1,11 @@
+# 2.4.0
+
+**16th January 2024**
+
+#### Dependencies
+
+- Update `sourcebroker/deployer-extended-typo3` to `21.0.0`
+
 # 2.3.1
 
 **21st November 2023**
