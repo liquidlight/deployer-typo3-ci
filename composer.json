@@ -21,7 +21,7 @@
         "source": "https://github.com/liquidlight/deployer-typo3-ci"
     },
     "require": {
-        "sourcebroker/deployer-extended-typo3": "^20.0"
+        "sourcebroker/deployer-extended-typo3": "^21.0"
     },
     "replace": {
         "liquidlight/deployer": "*"
