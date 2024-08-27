@@ -78,9 +78,9 @@ set('keep_releases', 3);
  * db_allow_push_live
  * @package deployer-extended-database
  *
- * Allow db to be pushed live (with confirmation)
+ * Disallow db to be pushed live
  */
-set('db_allow_push_live', true);
+set('db_allow_push_live', false);
 
 /**
  * media_allow_push_live
