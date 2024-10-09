@@ -10,6 +10,10 @@ task('deploy:assets', function () {
 		upload($this->path('html/assets'), '{{release_path}}/html');
 	}
 
+	if (is_dir($this->path('html/_assets'))) {
+		upload($this->path('html/_assets'), '{{release_path}}/html');
+	}
+
 	/**
 	 * Rsync local resources to handle compilation
 	 */
