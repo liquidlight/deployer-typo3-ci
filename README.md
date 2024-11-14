@@ -83,3 +83,13 @@ on(select('instance=production'), function ($host) {
 	after('cache:clear_php_cli', 'cache:clear_php_http');
 });
 ```
+
+### Pushing the dastabase
+
+Pushing the database to live is prohibeted, however there are some cases where this needs to be done.
+
+To allow this, add the following to your local `deploy.php` file
+
+```php
+set('db_allow_push_live', true);
+```
