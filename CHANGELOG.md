@@ -1,3 +1,12 @@
+# 2.5.0
+
+**14th November 2024**
+
+#### Feature
+
+- Allow syncing of assets for TYPO3 v12
+- Prohibit pushing of the database to live
+
 # 2.4.0
 
 **16th January 2024**
