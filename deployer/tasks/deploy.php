@@ -57,10 +57,6 @@ task('deploy', [
 	// Read more on https://github.com/sourcebroker/deployer-extended-database#db-backup
 	'db:backup',
 
-	// Start buffering http requests. No frontend access possible from now.
-	// Read more on https://github.com/sourcebroker/deployer-extended#buffer-start
-	'buffer:start',
-
 	// Truncate caching tables, all cf_* tables
 	// Read more on https://github.com/sourcebroker/deployer-extended-database#db-truncate
 	'db:truncate',
@@ -78,13 +74,6 @@ task('deploy', [
 	// Clear TYPO3 caches
 	'typo3cms:cache:flush',
 
-	// Frontend access possible again from now
-	// Read more on https://github.com/sourcebroker/deployer-extended#buffer-stop
-	'buffer:stop',
-
-	// Standard deployer task.
-	'deploy:writable',
-
 	// Carry out any post-deploy tasks
 	// Read more on https://gitlab.lldev.co.uk/packages/typo3/deployer#set-environment
 	'environment:post-deploy',
@@ -97,5 +86,4 @@ task('deploy', [
 
 	// Standard deployer task.
 	'deploy:success',
-
 ]);
