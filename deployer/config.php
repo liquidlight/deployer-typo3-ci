@@ -49,14 +49,6 @@ if (!file_exists(getcwd() . '/.env')) {
 }
 
 /**
- * composer_channel
- * @package deployer-extended
- *
- * What composer version?
- */
-set('composer_channel', 2);
-
-/**
  * shared_files
  * @package deployer
  *
