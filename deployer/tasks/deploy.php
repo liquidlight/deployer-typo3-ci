@@ -2,6 +2,8 @@
 
 namespace Deployer;
 
+task('deploy-ci', ['deploy']);
+
 task('deploy', [
 
 	// Standard deployer task.
