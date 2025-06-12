@@ -14,7 +14,12 @@ class Loader
 
 		$this->loadComposer();
 
-		new \SourceBroker\DeployerExtendedTypo3\Loader();
+		new \SourceBroker\DeployerLoader\Load([
+			['get' => 'sourcebroker/deployer-typo3-media'],
+			['get' => 'sourcebroker/deployer-typo3-database'],
+			['get' => 'sourcebroker/deployer-typo3-deploy'],
+			['get' => 'sourcebroker/deployer-extended-typo3'],
+		]);
 
 		foreach ([
 			'config.php',
@@ -22,7 +27,6 @@ class Loader
 			'hosts/staging.php',
 			'hosts/production.php',
 			'tasks/deploy_assets.php',
-			'tasks/deploy_dotenv.php',
 			'tasks/environment_post_deploy.php',
 			'tasks/environment_prepare.php',
 			'tasks/typo3cms_cache_flush.php',
