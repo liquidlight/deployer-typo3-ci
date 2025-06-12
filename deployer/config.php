@@ -53,22 +53,6 @@ if (!getenv('DEPLOY_DOTENV')) {
 set('keep_releases', 3);
 
 /**
- * db_allow_push_live
- * @package deployer-extended-database
- *
- * Disallow db to be pushed live
- */
-set('db_allow_push_live', false);
-
-/**
- * media_allow_push_live
- * @package deployer-extended-media
- *
- * Allow media to be pushed live (with confirmation)
- */
-set('media_allow_push_live', true);
-
-/**
  * writable_chmod_mode
  * @package deployer
  *
