@@ -1,3 +1,12 @@
+# 2.6.0
+
+**12th June 2025**
+
+#### Feature
+
+- Upgrade `sourcebroker/deployer-extended-typo3` to `23.0` (#1)
+
+
 # 2.5.0
 
 **14th November 2024**
