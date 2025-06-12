@@ -3,6 +3,7 @@
 #### Feature
 
 - Expand `clear_paths` to include more files
+- Update `deploy` task to match `deployer-typo3-deploy-ci`
 
 #### Refactor
 
