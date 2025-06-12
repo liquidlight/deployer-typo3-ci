@@ -43,9 +43,6 @@ task('deploy', [
 	// Standard deployer task.
 	'deploy:vendors',
 
-	// Upload the DEPLOY_DOTENV env var as .env file
-	'deploy:dotenv',
-
 	// Upload front-end assets
 	// Read more on https://gitlab.lldev.co.uk/packages/typo3/deployer#assets-upload
 	'deploy:assets',
