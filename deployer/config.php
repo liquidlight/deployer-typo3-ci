@@ -34,15 +34,6 @@ if (!file_exists(getcwd() . '/.env')) {
 	set('local_host', 'local');
 }
 
-/**
- * shared_files
- * @package deployer
- *
- * Add .env as a shared file
- */
-if (!getenv('DEPLOY_DOTENV')) {
-	set('shared_files', array_merge(get('shared_files'), ['.env']));
-}
 
 /**
  * keep_releases

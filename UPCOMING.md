@@ -7,6 +7,7 @@
 - Remove `composer_channel` - set in `sourcebroker/deployer-typo3-extended`
 - Remove `web_path` - set in `sourcebroker/deployer-typo3-media`
 - Remove `log_files` - set in `sourcebroker/deployer-typo3-deploy`
+- Remove `env` as a `shared_file` - set in `sourcebroker/deployer-typo3-deploy`
 
 #### Dependencies
 
