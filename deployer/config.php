@@ -98,12 +98,16 @@ set(
 		get('clear_paths'),
 		[
 			'.env.example',
-			'.gitlab',
-			'.gitlab-ci.yml',
+			'.gitlab/',
+			'bearer.yml',
 			'build/',
+			'ec-cli-config.php',
 			'gulpfile.js',
-			'package.json',
+			'Makefile',
 			'package-lock.json',
+			'package.json',
+			'playwright.config.ts',
+			'README.md',
 		]
 	)
 );

@@ -1,5 +1,9 @@
 # Major
 
+#### Feature
+
+- Expand `clear_paths` to include more files
+
 #### Refactor
 
 - Remove `deploy:dotenv` task (not used)
