@@ -21,20 +21,6 @@ if (getenv('CI_REPOSITORY_URL')) {
 }
 
 /**
- * web_path
- * @package deployer-extended
- *
- * Use the web path from composer
- */
-if (isset(
-	$this->composer['extra'],
-	$this->composer['extra']['typo3/cms'],
-	$this->composer['extra']['typo3/cms']['web-dir']
-)) {
-	set('web_path', rtrim($this->composer['extra']['typo3/cms']['web-dir'], '/') . '/');
-}
-
-/**
  * local_host
  *
  * @package deployer-extended-database
