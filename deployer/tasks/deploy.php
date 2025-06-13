@@ -30,16 +30,9 @@ task('deploy', [
 	// Standard deployer task.
 	'deploy:writable',
 
-	// Standard deployer task.
-	'deploy:clear_paths',
-
 	// Create database backup, compress and copy to database store.
 	// Read more on https://github.com/sourcebroker/deployer-extended-database#db-backup
 	'db:backup',
-
-	// Truncate caching tables, all cf_* tables
-	// Read more on https://github.com/sourcebroker/deployer-extended-database#db-truncate
-	'db:truncate',
 
 	// deployer-typo3-deploy-ci task.
 	'typo3:cache:warmup:system',
