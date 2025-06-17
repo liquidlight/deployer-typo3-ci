@@ -74,6 +74,10 @@ task('deploy', [
 	// Clear TYPO3 caches
 	'typo3cms:cache:flush',
 
+	// Standard deployer task.
+	// Run a second time to set the correct permissions after deployment
+	'deploy:writable',
+
 	// Carry out any post-deploy tasks
 	// Read more on https://gitlab.lldev.co.uk/packages/typo3/deployer#set-environment
 	'environment:post-deploy',
