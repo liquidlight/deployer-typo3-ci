@@ -1,3 +1,11 @@
+# 2.6.2
+
+**17th June 2025**
+
+#### Fix
+
+- Re-add `deploy:writable` after deployment of assets to set `var` folder permissions correctly
+
 # 2.6.1
 
 **17th June 2025**
