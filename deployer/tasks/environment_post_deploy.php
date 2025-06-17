@@ -27,6 +27,6 @@ task('environment:post-deploy', function () {
 		 * Reload PHP
 		 */
 		$process = get('deployer_php_process', '/etc/init.d/php7.4-fpm');
-		run('sudo ' . $process . ' reload');
+		run('sudo ' . $process . ' try-restart');
 	}
 });
