@@ -2,7 +2,7 @@
     "name": "liquidlight/deployer-typo3-ci",
     "description": "TYPO3 deployment via CI",
     "license": "GPL-2.0+",
-    "version": "2.6.0",
+    "version": "2.6.1",
     "readme": "./README.md",
     "authors": [
         {

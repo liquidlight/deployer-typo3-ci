@@ -1,3 +1,11 @@
+# 2.6.1
+
+**17th June 2025**
+
+#### Fix
+
+- Restart PHP 7.4 only if it was previously running
+
 # 2.6.0
 
 **12th June 2025**
