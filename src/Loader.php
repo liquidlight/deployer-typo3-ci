@@ -10,7 +10,7 @@ class Loader
 			['get' => 'sourcebroker/deployer-typo3-media'],
 			['get' => 'sourcebroker/deployer-typo3-database'],
 			['get' => 'sourcebroker/deployer-typo3-deploy-ci'],
-			['package' => 'liquidlight/deployer-extended-typo3'],
+			['package' => 'liquidlight/deployer-typo3-ci'],
 		]);
 	}
 }

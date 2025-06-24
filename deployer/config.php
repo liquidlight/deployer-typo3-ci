@@ -123,15 +123,16 @@ set('db_allow_copy_live', false);
  *
  * Extend ignore_tables_out defined in sourcebroker/deployer-typo3-database
  */
-$dbDatabaseMerged = get('db_databases_merged');
-$dbDatabaseMerged['database_default']['ignore_tables_out'] = [
-	...$dbDatabaseMerged['database_default']['ignore_tables_out'],
+$dbDatabaseMerged = get('db_default');
+$dbDatabaseMerged['ignore_tables_out'] = [
+	...$dbDatabaseMerged['ignore_tables_out'],
 	'sys_history',
 	'sys_log',
 	'tx_powermail_domain_model_mail',
 	'tx_powermail_domain_model_answer',
 ];
-set('db_databases_merged', $dbDatabaseMerged);
+set('db_default', $dbDatabaseMerged);
+
 
 /**
  * clear_paths
