@@ -49,7 +49,7 @@ set('keep_releases', 3);
  *
  * What writeable mode should we use?
  */
-set('writable_mode', 'skip');
+set('writable_mode', 'chmod');
 
 /**
  * writable_chmod_mode
