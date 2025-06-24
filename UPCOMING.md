@@ -14,6 +14,7 @@
 - Remove `log_files` - set in `sourcebroker/deployer-typo3-deploy`
 - Remove `env` as a `shared_file` - set in `sourcebroker/deployer-typo3-deploy`
 - Remove `environment:` tasks - they should now be set locally
+- Remove PHP reloading so the command can be set locally
 
 #### Dependencies
 

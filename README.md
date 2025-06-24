@@ -85,13 +85,19 @@ set('writable_mode', 'chgrp');
 set('http_group', 'www-data');
 ```
 
-#### Additional task
+#### Additional tasks
+
+**`deploy:vps:writable`**
 
 Add an extra post-deploy task to reset permissions and reboot PHP if needed
 
 ```php
 after('typo3:cache:flush:pages', 'deploy:vps:writable');
 ```
+
+**`service:php_fpm_reload`**
+
+Add PHP reloading to set the correct version as documented in [deployer-extended](https://github.com/sourcebroker/deployer-extended?tab=readme-ov-file#service)
 
 ## Upgrading
 
