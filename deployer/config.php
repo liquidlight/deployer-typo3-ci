@@ -49,7 +49,7 @@ set('keep_releases', 3);
  *
  * What writeable mode should we use?
  */
-set('writable_mode', 'chmod');
+set('writable_mode', 'skip');
 
 /**
  * writable_chmod_mode
@@ -93,6 +93,45 @@ set(
 		get('web_path') . 'fileadmin',
 	]
 );
+
+/**
+ * media_allow_*
+ * @package deployer-extended-media
+ *
+ * Do not allow dangerous media sync to top instances.
+ * Look https://github.com/sourcebroker/deployer-extended-media for docs
+ */
+set('media_allow_push_live', false);
+set('media_allow_copy_live', false);
+set('media_allow_link_live', false);
+set('media_allow_pull_live', false);
+
+/**
+ * db_allow_*
+ * @package deployer-extended-db
+ *
+ * Do not allow dangerous database sync to top instances.
+ * Look https://github.com/sourcebroker/deployer-extended-database
+ */
+set('db_allow_push_live', false);
+set('db_allow_pull_live', false);
+set('db_allow_copy_live', false);
+
+/**
+ * db_databases_merged
+ * @package deployer-extended-db
+ *
+ * Extend ignore_tables_out defined in sourcebroker/deployer-typo3-database
+ */
+$dbDatabaseMerged = get('db_databases_merged');
+$dbDatabaseMerged['database_default']['ignore_tables_out'] = [
+	...$dbDatabaseMerged['database_default']['ignore_tables_out'],
+	'sys_history',
+	'sys_log',
+	'tx_powermail_domain_model_mail',
+	'tx_powermail_domain_model_answer',
+];
+set('db_databases_merged', $dbDatabaseMerged);
 
 /**
  * clear_paths

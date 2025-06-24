@@ -18,4 +18,8 @@
 
 #### Dependencies
 
-- Upgrade `deployer-extended-typo3` to 24
+- Replace `deployer-extended-typo3` with the separate packages
+    - `sourcebroker/deployer-typo3-deploy-ci`
+    - `sourcebroker/deployer-typo3-database`
+    - `sourcebroker/deployer-typo3-media`
+    - `sourcebroker/deployer-extended`
