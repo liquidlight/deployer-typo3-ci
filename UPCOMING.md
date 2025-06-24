@@ -13,6 +13,7 @@
 - Remove `web_path` - set in `sourcebroker/deployer-typo3-media`
 - Remove `log_files` - set in `sourcebroker/deployer-typo3-deploy`
 - Remove `env` as a `shared_file` - set in `sourcebroker/deployer-typo3-deploy`
+- Remove `environment:` tasks - they should now be set locally
 
 #### Dependencies
 

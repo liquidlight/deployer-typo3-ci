@@ -44,6 +44,14 @@ if (!file_exists(getcwd() . '/.env')) {
 set('keep_releases', 3);
 
 /**
+ * writable_mode
+ * @package deployer
+ *
+ * What writeable mode should we use?
+ */
+set('writable_mode', 'chmod');
+
+/**
  * writable_chmod_mode
  * @package deployer
  *

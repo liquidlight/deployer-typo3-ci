@@ -7,9 +7,6 @@ task('deploy', [
 	// Standard deployer task.
 	'deploy:info',
 
-	// Set variables and other pre-deploy tasks
-	'environment:prepare',
-
 	// Standard deployer task.
 	'deploy:setup',
 
@@ -47,10 +44,6 @@ task('deploy', [
 
 	// deployer-typo3-deploy-ci task.
 	'typo3:cache:flush:pages',
-
-	// Carry out any post-deploy tasks
-	// Read more on https://gitlab.lldev.co.uk/packages/typo3/deployer#set-environment
-	'environment:post-deploy',
 
 	// Standard Deployer task.
 	'deploy:unlock',
