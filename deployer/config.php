@@ -21,20 +21,6 @@ if (getenv('CI_REPOSITORY_URL')) {
 }
 
 /**
- * web_path
- * @package deployer-extended
- *
- * Use the web path from composer
- */
-if (isset(
-	$this->composer['extra'],
-	$this->composer['extra']['typo3/cms'],
-	$this->composer['extra']['typo3/cms']['web-dir']
-)) {
-	set('web_path', rtrim($this->composer['extra']['typo3/cms']['web-dir'], '/') . '/');
-}
-
-/**
  * local_host
  *
  * @package deployer-extended-database
@@ -48,23 +34,6 @@ if (!file_exists(getcwd() . '/.env')) {
 	set('local_host', 'local');
 }
 
-/**
- * composer_channel
- * @package deployer-extended
- *
- * What composer version?
- */
-set('composer_channel', 2);
-
-/**
- * shared_files
- * @package deployer
- *
- * Add .env as a shared file
- */
-if (!getenv('DEPLOY_DOTENV')) {
-	set('shared_files', array_merge(get('shared_files'), ['.env']));
-}
 
 /**
  * keep_releases
@@ -73,22 +42,6 @@ if (!getenv('DEPLOY_DOTENV')) {
  * How many releases to keep
  */
 set('keep_releases', 3);
-
-/**
- * db_allow_push_live
- * @package deployer-extended-database
- *
- * Disallow db to be pushed live
- */
-set('db_allow_push_live', false);
-
-/**
- * media_allow_push_live
- * @package deployer-extended-media
- *
- * Allow media to be pushed live (with confirmation)
- */
-set('media_allow_push_live', true);
 
 /**
  * writable_chmod_mode
@@ -145,12 +98,16 @@ set(
 		get('clear_paths'),
 		[
 			'.env.example',
-			'.gitlab',
-			'.gitlab-ci.yml',
+			'.gitlab/',
+			'bearer.yml',
 			'build/',
+			'ec-cli-config.php',
 			'gulpfile.js',
-			'package.json',
+			'Makefile',
 			'package-lock.json',
+			'package.json',
+			'playwright.config.ts',
+			'README.md',
 		]
 	)
 );
