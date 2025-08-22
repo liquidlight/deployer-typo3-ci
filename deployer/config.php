@@ -21,20 +21,6 @@ if (getenv('CI_REPOSITORY_URL')) {
 }
 
 /**
- * web_path
- * @package deployer-extended
- *
- * Use the web path from composer
- */
-if (isset(
-	$this->composer['extra'],
-	$this->composer['extra']['typo3/cms'],
-	$this->composer['extra']['typo3/cms']['web-dir']
-)) {
-	set('web_path', rtrim($this->composer['extra']['typo3/cms']['web-dir'], '/') . '/');
-}
-
-/**
  * local_host
  *
  * @package deployer-extended-database
@@ -48,23 +34,6 @@ if (!file_exists(getcwd() . '/.env')) {
 	set('local_host', 'local');
 }
 
-/**
- * composer_channel
- * @package deployer-extended
- *
- * What composer version?
- */
-set('composer_channel', 2);
-
-/**
- * shared_files
- * @package deployer
- *
- * Add .env as a shared file
- */
-if (!getenv('DEPLOY_DOTENV')) {
-	set('shared_files', array_merge(get('shared_files'), ['.env']));
-}
 
 /**
  * keep_releases
@@ -75,20 +44,12 @@ if (!getenv('DEPLOY_DOTENV')) {
 set('keep_releases', 3);
 
 /**
- * db_allow_push_live
- * @package deployer-extended-database
+ * writable_mode
+ * @package deployer
  *
- * Disallow db to be pushed live
+ * What writeable mode should we use?
  */
-set('db_allow_push_live', false);
-
-/**
- * media_allow_push_live
- * @package deployer-extended-media
- *
- * Allow media to be pushed live (with confirmation)
- */
-set('media_allow_push_live', true);
+set('writable_mode', 'chmod');
 
 /**
  * writable_chmod_mode
@@ -134,6 +95,46 @@ set(
 );
 
 /**
+ * media_allow_*
+ * @package deployer-extended-media
+ *
+ * Do not allow dangerous media sync to top instances.
+ * Look https://github.com/sourcebroker/deployer-extended-media for docs
+ */
+set('media_allow_push_live', false);
+set('media_allow_copy_live', false);
+set('media_allow_link_live', false);
+set('media_allow_pull_live', false);
+
+/**
+ * db_allow_*
+ * @package deployer-extended-db
+ *
+ * Do not allow dangerous database sync to top instances.
+ * Look https://github.com/sourcebroker/deployer-extended-database
+ */
+set('db_allow_push_live', false);
+set('db_allow_pull_live', false);
+set('db_allow_copy_live', false);
+
+/**
+ * db_databases_merged
+ * @package deployer-extended-db
+ *
+ * Extend ignore_tables_out defined in sourcebroker/deployer-typo3-database
+ */
+$dbDatabaseMerged = get('db_default');
+$dbDatabaseMerged['ignore_tables_out'] = [
+	...$dbDatabaseMerged['ignore_tables_out'],
+	'sys_history',
+	'sys_log',
+	'tx_powermail_domain_model_mail',
+	'tx_powermail_domain_model_answer',
+];
+set('db_default', $dbDatabaseMerged);
+
+
+/**
  * clear_paths
  * @package deployer
  *
@@ -145,12 +146,16 @@ set(
 		get('clear_paths'),
 		[
 			'.env.example',
-			'.gitlab',
-			'.gitlab-ci.yml',
+			'.gitlab/',
+			'bearer.yml',
 			'build/',
+			'ec-cli-config.php',
 			'gulpfile.js',
-			'package.json',
+			'Makefile',
 			'package-lock.json',
+			'package.json',
+			'playwright.config.ts',
+			'README.md',
 		]
 	)
 );

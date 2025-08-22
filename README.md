@@ -30,21 +30,6 @@ The following hosts have a config file in the `deployer/hosts` file with some se
 - staging
 - local
 
-### Set environment
-
-It is advised you set an environment for extra config to be applied. This is set on the `host()` to allow for different envs for different hosts
-
-```php
-host('production')
-  ->set('ll_deployer_environment', 'cpanel')
-;
-```
-
-#### Options
-
-- `vps` - for a fully self-managed debian based vps
-- `cpanel` - for a site running with cPanel
-
 ### Assets upload
 
 This package will upload `html/assets` if there as well as `app/*/Resources/Public`, but if you want others that are built then you need to specify them as an array. This can be set globally or on a host by host basis
@@ -58,15 +43,6 @@ set(
     '{{release_path}}/html/_assets'
   ]
 );
-```
-
-### `.env` file upload
-
-You can add the contents of your `.env` file as a CI/CD variable (ensure "file" is selected in the drop down) and set it as `DEPLOY_DOTENV_[ENVIRONMEENT NAME]`. This then needs to be set to an environment variable in your `.gitlab-ci.yaml` of `DEPLOY_DOTENV` to be deployed.
-
-```yaml
-  variables:
-    DEPLOY_DOTENV: $DEPLOY_DOTENV_PRODUCTION
 ```
 
 ### Clearing OPCache
@@ -84,12 +60,51 @@ on(select('instance=production'), function ($host) {
 });
 ```
 
-### Pushing the dastabase
+### Pushing the database
 
-Pushing the database to live is prohibeted, however there are some cases where this needs to be done.
+Pushing the database to live is prohibited, however there are some cases where this needs to be done.
 
 To allow this, add the following to your local `deploy.php` file
 
 ```php
 set('db_allow_push_live', true);
 ```
+
+## Common settings
+
+### VPS
+
+#### Configuration
+
+Add the following settings if not set (and adjust if necessary). They can be set globally or chained to the host (e.g. `->set('writable_use_sudo', true)`)
+
+```php
+set('writable_use_sudo', true);
+set('cleanup_use_sudo', true);
+set('writable_mode', 'chgrp');
+set('http_group', 'www-data');
+```
+
+#### Additional tasks
+
+**`deploy:vps:writable`**
+
+Add an extra post-deploy task to reset permissions and reboot PHP if needed
+
+```php
+after('typo3:cache:flush:pages', 'deploy:vps:writable');
+```
+
+**`service:php_fpm_reload`**
+
+Add PHP reloading to set the correct version as documented in [deployer-extended](https://github.com/sourcebroker/deployer-extended?tab=readme-ov-file#service)
+
+## Upgrading
+
+Between v2 and v3 there are several breaking changes which need ot be addressed in the local `deploy.php` file.
+
+1. Change `require_once __DIR__ . '/vendor/sourcebroker/deployer-loader/autoload.php';` to `require_once './vendor/autoload.php';`
+2. Change `new \LiquidLight\Deployer\Loader(__DIR__);` to `new \LiquidLight\Deployer\Loader();`
+3. Remove `ll_deployer_environment` - this doesn't add any tasks or configuration any more
+    - If it was previously `cpanel`, nothing else needs doing
+    - If it was `vps` then follow the **VPS comon settings** steps above
