@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Not used in standard deploy but a requirement for VPS
+ */
+
 namespace Deployer;
 
 task('deploy:vps:writable', function () {
