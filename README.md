@@ -107,9 +107,7 @@ Between v2 and v3 there are several breaking changes which need ot be addressed 
 2. Remove `ll_deployer_environment` - this doesn't add any tasks or configuration any more
     - If it was previously `cpanel`, nothing else needs doing
     - If it was `vps` then follow the **VPS comon settings** steps above
-3. If you have a job which relies on `cache:clear_php_cli`, update it to be `typo3:cache:flush:pages`
-    - e.g. `after('typo3:cache:flush:pages', 'cache:clear_php_http');`
-
+    
 ```php
 <?php
 

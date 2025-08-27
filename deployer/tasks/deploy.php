@@ -38,6 +38,9 @@ task('deploy', [
 	// Standard Deployer task.
 	'deploy:symlink',
 
+	// sourcebroker/deployer-extended special task. Read more on https://github.com/sourcebroker/deployer-extended#cache-clear-php-cli
+	'cache:clear_php_cli',
+
 	// deployer-typo3-deploy-ci task.
 	'typo3:cache:flush:pages',
 
