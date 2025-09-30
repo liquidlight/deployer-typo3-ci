@@ -130,6 +130,8 @@ $dbDatabaseMerged['ignore_tables_out'] = [
 	'sys_log',
 	'tx_powermail_domain_model_mail',
 	'tx_powermail_domain_model_answer',
+	'tx_kesearch_stat_word',
+	'tx_kesearch_stat_search',
 ];
 set('db_default', $dbDatabaseMerged);
 
