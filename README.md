@@ -101,13 +101,12 @@ Add PHP reloading to set the correct version as documented in [deployer-extended
 
 ## Upgrading
 
-Between v2 and v3 there are several breaking changes which need ot be addressed in the local `deploy.php` file.
+### v2 -> v3
 
-1. Change the first few lines to the example below
-2. Remove `ll_deployer_environment` - this doesn't add any tasks or configuration any more
-    - If it was previously `cpanel`, nothing else needs doing
-    - If it was `vps` then follow the **VPS comon settings** steps above
-    
+As well as removing some functionality, the v3 upgrade requires some changes to the `deploy.php` file
+
+1. In `deploy.php`, update the require location & class invocation
+
 ```php
 <?php
 
@@ -116,3 +115,7 @@ namespace Deployer;
 require_once './vendor/autoload.php';
 new \LiquidLight\Deployer\Loader();
 ```
+
+2. Review each environment and remove the `ll_deployer_environment` declaration - this doesn't add any tasks or configuration any more
+    - **Note:** If it was set to `vps` then follow the [**Common settings -> VPS**](#vps) steps above
+    
