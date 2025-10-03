@@ -1,3 +1,33 @@
+# 3.0.0
+
+**3rd October 2025**
+
+#### Feature
+
+- Expand `clear_paths` to include more files
+- Expand `ignore_tables_out` to include more tables
+- Update `deploy` task to match `deployer-typo3-deploy-ci`
+
+#### Refactor
+
+- Remove `deploy:dotenv` task (not used)
+- Remove `db_allow_push_live` and `media_allow_push_live` - set in `sourcebroker/deployer-typo3-extended`
+- Remove `composer_channel` - set in `sourcebroker/deployer-typo3-extended`
+- Remove `web_path` - set in `sourcebroker/deployer-typo3-media`
+- Remove `log_files` - set in `sourcebroker/deployer-typo3-deploy`
+- Remove `env` as a `shared_file` - set in `sourcebroker/deployer-typo3-deploy`
+- Remove `environment:` tasks - they should now be set locally
+- Remove PHP reloading so the command can be set locally
+
+#### Dependencies
+
+- Replace `deployer-extended-typo3` with the separate packages
+    - `sourcebroker/deployer-typo3-deploy-ci`
+    - `sourcebroker/deployer-typo3-database`
+    - `sourcebroker/deployer-typo3-media`
+    - `sourcebroker/deployer-extended`
+
+
 # 2.6.2
 
 **17th June 2025**
