@@ -143,11 +143,15 @@ set(
 			'build/',
 			'ec-cli-config.php',
 			'gulpfile.js',
+			'gulpfile.mjs',
 			'Makefile',
 			'package-lock.json',
 			'package.json',
 			'playwright.config.ts',
 			'README.md',
+			'app/*/*/package.json',
+			'app/**/*.test.ts',
+			'app/**/*.spec.ts',
 		]
 	)
 );
