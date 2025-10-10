@@ -148,6 +148,8 @@ set(
 			'package-lock.json',
 			'package.json',
 			'playwright.config.ts',
+			'playwright.config.mts',
+			'readme.md',
 			'README.md',
 			'app/*/*/package.json',
 			'app/**/*.test.ts',
