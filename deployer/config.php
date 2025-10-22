@@ -85,6 +85,25 @@ set(
 );
 
 /**
+ * shared_dirs
+ * @package deployer
+ *
+ * List of files what will be shared between releases
+ */
+set('shared_dirs', function () {
+    return [
+        get('web_path') . 'fileadmin',
+        get('web_path') . 'typo3temp',
+		get('web_path') . 'uploads',
+        'var/charset',
+        'var/lock',
+        'var/log',
+        'var/session',
+		'var/transient',
+    ];
+});
+
+/**
  * media_allow_*
  * @package deployer-extended-media
  *
