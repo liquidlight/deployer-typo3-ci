@@ -1,3 +1,15 @@
+# 3.1.0
+
+**24th October 2025**
+
+#### Feature
+
+- Specify `shared_dirs` to include `typo3temp`
+
+#### Refactor
+
+- Remove `COMPOSER_AUTH` env - composer installs are done locally
+
 # 3.0.0
 
 **3rd October 2025**
