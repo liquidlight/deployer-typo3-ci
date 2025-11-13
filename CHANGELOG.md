@@ -1,3 +1,11 @@
+# 3.1.1
+
+**13th November 2025**
+
+#### Fix
+
+- Run `chgrp` with `chmod` in `deploy:vps:writable`
+
 # 3.1.0
 
 **24th October 2025**
