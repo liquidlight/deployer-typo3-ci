@@ -30,21 +30,6 @@ The following hosts have a config file in the `deployer/hosts` file with some se
 - staging
 - local
 
-### Assets upload
-
-This package will upload `html/assets` if there as well as `app/*/Resources/Public`, but if you want others that are built then you need to specify them as an array. This can be set globally or on a host by host basis
-
-e.g.
-
-```php
-set(
-  'll_deployer_asset_paths',
-  [
-    '{{release_path}}/html/_assets'
-  ]
-);
-```
-
 ### Clearing OPCache
 
 If the server has `OPCache` installed, it will need to be cleared on each deployment to allow PHP and Apache to see the new symlinks.
