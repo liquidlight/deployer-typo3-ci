@@ -30,10 +30,10 @@ task('deploy', [
 	'db:backup',
 
 	// deployer-typo3-deploy-ci task.
-	'typo3:cache:warmup:system',
+	'typo3:extension:setup',
 
 	// deployer-typo3-deploy-ci task.
-	'typo3:extension:setup',
+	'typo3:cache:warmup:system',
 
 	// Standard Deployer task.
 	'deploy:symlink',
