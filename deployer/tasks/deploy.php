@@ -32,9 +32,6 @@ task('deploy', [
 	// liquidlight/deployer-typo3-ci task.
 	'typo3:install:extensionsetupifpossible',
 
-	// deployer-typo3-deploy-ci task.
-	'typo3:cache:warmup:system',
-
 	// Standard Deployer task.
 	'deploy:symlink',
 
