@@ -29,8 +29,8 @@ task('deploy', [
 	// Read more on https://github.com/sourcebroker/deployer-extended-database#db-backup
 	'db:backup',
 
-	// deployer-typo3-deploy-ci task.
-	'typo3:extension:setup',
+	// liquidlight/deployer-typo3-ci task.
+	'typo3:install:extensionsetupifpossible',
 
 	// deployer-typo3-deploy-ci task.
 	'typo3:cache:warmup:system',

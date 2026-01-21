@@ -1,4 +1,8 @@
-# Patch
+# Minor
+
+#### Feature
+
+- Use `typo3 install:extensionsetupifpossible` instead of `typo3:extension:setup` (#5)
 
 #### Fix
 
