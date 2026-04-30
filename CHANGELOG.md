@@ -1,3 +1,15 @@
+# 3.2.0
+
+**30th April 2026**
+
+#### Feature
+
+- Use `typo3 install:extensionsetupifpossible` instead of `typo3:extension:setup` (#5)
+
+#### Fix
+
+- Swap order of tasks to setup extensions before warming cache (#5)
+
 # 3.1.1
 
 **13th November 2025**
