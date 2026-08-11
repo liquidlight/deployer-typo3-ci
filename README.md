@@ -103,4 +103,3 @@ new \LiquidLight\Deployer\Loader();
 
 2. Review each environment and remove the `ll_deployer_environment` declaration - this doesn't add any tasks or configuration any more
     - **Note:** If it was set to `vps` then follow the [**Common settings -> VPS**](#vps) steps above
-    

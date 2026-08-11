@@ -36,6 +36,28 @@ if (!file_exists(getcwd() . '/.env')) {
 
 
 /**
+ * has_secrets_managed
+ * @package liquidlight/deployer-typo3-ci
+ *
+ * Whether this deploy should fetch production secrets from Infisical and
+ * overwrite the shared .env file. True only when running in GitLab CI AND
+ * the project has opted in by committing a `.infisical.json` file.
+ */
+set('has_secrets_managed', function () {
+    return (bool) getenv('GITLAB_CI') && file_exists(getcwd() . '/.infisical.json');
+});
+
+/**
+ * secrets_managed_comment
+ * @package liquidlight/deployer-typo3-ci
+ *
+ * Header written to the top of the Infisical-managed shared .env file.
+ * Override with set('secrets_managed_comment', '...') per-project if a
+ * different message is wanted.
+ */
+set('secrets_managed_comment', "# Managed by secrets manager\n# Do not edit directly\n");
+
+/**
  * keep_releases
  * @package deployer
  *

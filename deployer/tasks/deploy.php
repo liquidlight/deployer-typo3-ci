@@ -19,6 +19,9 @@ task('deploy', [
 	// deployer-typo3-deploy-ci task.
 	'file:upload_build',
 
+	// liquidlight/deployer-typo3-ci task.
+	'secrets:fetch',
+
 	// Standard deployer task.
 	'deploy:shared',
 
