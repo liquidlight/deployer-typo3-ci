@@ -34,6 +34,9 @@ task('deploy', [
 	// Standard deployer task.
 	'deploy:update_code',
 
+	// liquidlight/deployer-typo3-ci task.
+	'secrets:fetch',
+
 	// Standard deployer task.
 	'deploy:shared',
 
