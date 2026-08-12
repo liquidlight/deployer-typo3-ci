@@ -13,7 +13,14 @@ task('secrets:fetch', function () {
     // If Infisical is unreachable, don't fail the whole deploy — leave whatever
     // is already in shared/.env alone and assume it's still good enough.
     try {
-        $export = runLocally('infisical export --env=' . get('infisical_environment', 'production') . ' --format=dotenv');
+        $config = json_decode(file_get_contents(getcwd() . '/.infisical.json'), true);
+        $projectId = $config['workspaceId'] ?? null;
+
+        if (!$projectId) {
+            throw new \RuntimeException('Could not find workspaceId in .infisical.json');
+        }
+
+        $export = runLocally('infisical export --projectId=' . $projectId . ' --env=' . get('infisical_environment', 'production') . ' --format=dotenv');
     } catch (\Throwable $e) {
         writeln('<comment>Could not fetch secrets from Infisical (' . $e->getMessage() . ') — leaving the existing shared .env in place.</comment>');
         return;
