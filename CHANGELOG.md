@@ -1,3 +1,11 @@
+# 3.3.0
+
+**13th August 2026**
+
+#### Feature
+
+- Deploy `.env` file from secrets manager (#7)
+
 # 3.2.0
 
 **30th April 2026**
