@@ -11,4 +11,5 @@ host('staging')
 		'instance' => 'staging',
 	])
 	->set('keep_releases', 1)
+	->set('infisical_environment', 'staging')
 ;

@@ -10,6 +10,7 @@ host('production')
 	->set('labels', [
 		'instance' => 'production',
 	])
+	->set('infisical_environment', 'prod')
 ;
 
 /**
