@@ -1,3 +1,13 @@
+# 2.7.0
+
+**17th August 2026**
+
+#### Feature
+
+- Add `secrets:fetch` task to overwrite the shared `.env` with production secrets from Infisical, for projects that commit an `.infisical.json` and run in GitLab CI
+- Add `has_secrets_managed` and `secrets_managed_comment` config, and `infisical_environment` on the `production`/`staging` hosts
+
+
 # 2.6.2
 
 **17th June 2025**
