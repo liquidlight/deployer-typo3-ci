@@ -1,3 +1,11 @@
+# 2.7.1
+
+**19th August 2026**
+
+#### Fix
+
+- Include file with `secrets:fetch` task in (#9)
+
 # 2.7.0
 
 **17th August 2026**
