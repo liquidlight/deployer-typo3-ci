@@ -25,6 +25,7 @@ class Loader
 			'tasks/deploy_dotenv.php',
 			'tasks/environment_post_deploy.php',
 			'tasks/environment_prepare.php',
+			'tasks/secrets_infisical.php',
 			'tasks/typo3cms_cache_flush.php',
 			'tasks/deploy.php',
 		] as $path) {
