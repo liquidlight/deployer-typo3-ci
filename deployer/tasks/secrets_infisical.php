@@ -20,7 +20,28 @@ task('secrets:fetch', function () {
             throw new \RuntimeException('Could not find workspaceId in .infisical.json');
         }
 
-        $export = runLocally('infisical export --projectId=' . $projectId . ' --env=' . get('infisical_environment', 'production') . ' --format=dotenv');
+        // Infisical's own --format=dotenv/dotenv-export escaping is broken for values
+        // containing a literal single quote (it produces invalid dotenv syntax), so we
+        // fetch as JSON and serialize the .env ourselves instead of trusting its output.
+        $export = runLocally('infisical export --projectId=' . $projectId . ' --env=' . get('infisical_environment', 'production') . ' --format=json');
+        $secrets = json_decode($export, true);
+
+        if (!is_array($secrets)) {
+            throw new \RuntimeException('Unexpected response from infisical export');
+        }
+
+        $lines = [];
+        foreach ($secrets as $secret) {
+            if (!isset($secret['key'], $secret['value']) || !is_string($secret['value'])) {
+                throw new \RuntimeException('Unexpected secret shape from infisical export');
+            }
+
+            // symfony/dotenv treats an unescaped $ in a double-quoted value as a variable
+            // reference (e.g. $HOME, ${HOME}) — escape it so bcrypt hashes etc. stay literal.
+            $value = str_replace('$', '\\$', json_encode($secret['value'], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+            $lines[] = $secret['key'] . '=' . $value;
+        }
+        $export = implode("\n", $lines);
     } catch (\Throwable $e) {
         writeln('<comment>Could not fetch secrets from Infisical (' . $e->getMessage() . ') — leaving the existing shared .env in place.</comment>');
         return;
