@@ -43,7 +43,13 @@ task('secrets:fetch', function () {
         }
         $export = implode("\n", $lines);
     } catch (\Throwable $e) {
-        writeln('<comment>Could not fetch secrets from Infisical (' . $e->getMessage() . ') — leaving the existing shared .env in place.</comment>');
+        $detail = $e->getMessage();
+
+        if ($e instanceof \Deployer\Exception\RunException) {
+            $detail = trim($e->getErrorOutput()) ?: trim($e->getOutput()) ?: $detail;
+        }
+
+        writeln('<comment>Could not fetch secrets from Infisical: ' . $detail . ' — leaving the existing shared .env in place.</comment>');
         return;
     }
 
