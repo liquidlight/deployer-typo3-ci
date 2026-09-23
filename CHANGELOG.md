@@ -1,3 +1,11 @@
+# 3.3.1
+
+**23rd September 2026**
+
+#### Fix
+
+- Escape characters in `.env` files (#8)
+
 # 3.3.0
 
 **13th August 2026**
