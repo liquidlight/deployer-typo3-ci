@@ -24,7 +24,8 @@
         "sourcebroker/deployer-typo3-deploy-ci": "^2.0.0",
         "sourcebroker/deployer-typo3-database": "^1.0.0",
         "sourcebroker/deployer-typo3-media": "^1.0.0",
-        "sourcebroker/deployer-extended": "^24.0.0"
+        "sourcebroker/deployer-extended": "^24.0.0",
+        "symfony/yaml": "^5.4 || ^6.0 || ^7.0"
     },
     "minimum-stability": "stable",
     "autoload": {

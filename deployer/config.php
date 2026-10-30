@@ -36,15 +36,36 @@ if (!file_exists(getcwd() . '/.env')) {
 
 
 /**
+ * infisical_config_file
+ * @package liquidlight/deployer-typo3-ci
+ *
+ * Path to the project's Infisical CLI config file, or null if none exists.
+ * Infisical's CLI moved from writing `.infisical.json` to `.infisical.yaml`
+ * (with a different schema) — prefer the new file, but keep supporting the
+ * legacy one for projects that haven't been re-initialised.
+ */
+set('infisical_config_file', function () {
+    foreach (['.infisical.yaml', '.infisical.json'] as $filename) {
+        $path = getcwd() . '/' . $filename;
+        if (file_exists($path)) {
+            return $path;
+        }
+    }
+
+    return null;
+});
+
+/**
  * has_secrets_managed
  * @package liquidlight/deployer-typo3-ci
  *
  * Whether this deploy should fetch production secrets from Infisical and
  * overwrite the shared .env file. True only when running in GitLab CI AND
- * the project has opted in by committing a `.infisical.json` file.
+ * the project has opted in by committing an `.infisical.yaml` (or legacy
+ * `.infisical.json`) file.
  */
 set('has_secrets_managed', function () {
-    return (bool) getenv('GITLAB_CI') && file_exists(getcwd() . '/.infisical.json');
+    return (bool) getenv('GITLAB_CI') && get('infisical_config_file') !== null;
 });
 
 /**

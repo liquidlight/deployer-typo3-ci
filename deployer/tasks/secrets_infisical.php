@@ -2,6 +2,8 @@
 
 namespace Deployer;
 
+use Symfony\Component\Yaml\Yaml;
+
 task('secrets:fetch', function () {
     if (!get('has_secrets_managed')) {
         return;
@@ -13,11 +15,20 @@ task('secrets:fetch', function () {
     // If Infisical is unreachable, don't fail the whole deploy — leave whatever
     // is already in shared/.env alone and assume it's still good enough.
     try {
-        $config = json_decode(file_get_contents(getcwd() . '/.infisical.json'), true);
-        $projectId = $config['workspaceId'] ?? null;
+        $configFile = get('infisical_config_file');
+
+        if (str_ends_with($configFile, '.yaml')) {
+            // New Infisical CLI config: project ID lives under secrets-management.
+            $config = Yaml::parseFile($configFile);
+            $projectId = $config['secrets-management']['project-id'] ?? null;
+        } else {
+            // Legacy Infisical CLI config.
+            $config = json_decode(file_get_contents($configFile), true);
+            $projectId = $config['workspaceId'] ?? null;
+        }
 
         if (!$projectId) {
-            throw new \RuntimeException('Could not find workspaceId in .infisical.json');
+            throw new \RuntimeException('Could not find a project ID in ' . $configFile);
         }
 
         // Infisical's own --format=dotenv/dotenv-export escaping is broken for values
