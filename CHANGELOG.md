@@ -1,3 +1,11 @@
+# 2.7.2
+
+**30th October 2026**
+
+#### Fix
+
+- Remove PHP 7.4 restart from post-deploy tasks, as 7.4 has been removed from the servers
+
 # 2.7.1
 
 **19th August 2026**
