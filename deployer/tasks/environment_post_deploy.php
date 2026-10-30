@@ -19,14 +19,5 @@ task('environment:post-deploy', function () {
 
 		cd('{{release_path}}');
 		run("$sudo chmod $recursive {{writable_chmod_mode}} $dirs");
-
-		/**
-		 * reload php
-		 * @package custom
-		 *
-		 * Reload PHP
-		 */
-		$process = get('deployer_php_process', '/etc/init.d/php7.4-fpm');
-		run('sudo ' . $process . ' try-restart');
 	}
 });
